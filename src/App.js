@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import Movie from './Views/Movie'
 import Home from './Views/Home'
 import Discover from './Views/Discover'
+import About from './Views/About'
 import Search from './components/Search/Search'
 
 export default function App() {
@@ -25,25 +26,14 @@ export default function App() {
             </li>
 
             <li>
-              <a href="https://www.themoviedb.org/">
-                The MovieDB.org - Source of data
-              </a>
-            </li>
-
-            <li>
-              <a href="https://developers.themoviedb.org/3">API docs</a>
-            </li>
-
-            <li>
-              <button
-                onClick={() => setSearchVisible(!searchVisible)}
-                type="button"
-              >
-                Search
-              </button>
+              <Link to="/about">About</Link>
             </li>
           </ul>
         </nav>
+
+        <button onClick={() => setSearchVisible(!searchVisible)} type="button">
+          Search
+        </button>
 
         <Switch>
           <Route exact path="/">
@@ -53,6 +43,8 @@ export default function App() {
           <Route exact path="/discover">
             <Discover />
           </Route>
+
+          <Route exact path="/about" component={About} />
 
           <Route exact path={`/movie/:id`} component={Movie} />
         </Switch>
