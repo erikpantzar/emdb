@@ -1,6 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
+import './styles/_var.css'
+import './styles/base.css'
 
 ReactDOM.render(
   <React.StrictMode>
