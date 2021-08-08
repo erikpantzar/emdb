@@ -1,11 +1,9 @@
 const KEY = "d1540083bbcc86fed537242f04bbf832"
-
 const baseURL = "https://api.themoviedb.org/3"
 const key = "api_key=" + KEY
 
 // SEARCH
 const fetchMovie = async (movie) => {
-  console.log(movie)
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${movie}`
 
   return await (await fetch(url)).json()
@@ -62,6 +60,25 @@ const fetchKeyword = async (keyword) => {
   }
 }
 
+// https://developers.themoviedb.org/3/discover/movie-discover
+const fetchDiscover = async ({ genres, cast = [], vote = 2, sort = 'popularity.desc' }) => {
+
+  const string = `${baseURL}/discover/movie?${key}` 
+    + (genres && '&with_genres=' + genres.toString())
+    + (cast && '&with_cast=' + cast.toString())
+    + (vote && '&vote_average.gte=' + vote)
+    + (sort && '&sort_by=' + sort)
+
+  try {
+    const res = await ( await fetch(string) ).json()
+    console.log(res.results)
+    return res.results
+  } catch(error) {
+    return error
+  }
+  
+}
+
 export default {
   keyword: fetchKeyword,
   movie: fetchMovie,
@@ -72,4 +89,5 @@ export default {
 
   searchActor: fetchActor,
   search: fetchMovie,
+  discover: fetchDiscover
 }

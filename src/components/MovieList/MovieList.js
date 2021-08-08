@@ -5,6 +5,7 @@ import { Thumbnail } from "../Poster/Poster"
 import "./MovieList.css"
 
 const MovieList = ({ movies = [] }) => {
+  console.log(movies)
   return (
     <ul className="movie-list">
       {movies.map((movie) => (

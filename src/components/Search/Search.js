@@ -6,7 +6,7 @@ import Genres from "../Genre/Genre"
 
 import "./Search.css"
 
-const Search = () => {
+const Search = ({ toggleSearch }) => {
   const [query, setQuery] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState([])
@@ -27,9 +27,7 @@ const Search = () => {
     <div className="search-container animateIn">
       <button
         className="search-close-button button"
-        onClick={() => {
-          console.log("close search")
-        }}
+        onClick={() => toggleSearch()}
       >
         X
       </button>
@@ -76,6 +74,7 @@ const Search = () => {
 
 export default Search
 
+
 const SearchResultItem = ({ result }) => {
   if (result.hasOwnProperty("gender")) {
     return <ActorListItem actor={result} />
@@ -97,6 +96,7 @@ const MovieListItem = ({ movie }) => {
 }
 
 const ActorListItem = ({ actor }) => {
+  // actor.id
   return (
     <div>
       <Thumbnail poster={actor.profile_path} />
