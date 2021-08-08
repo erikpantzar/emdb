@@ -1,13 +1,12 @@
-import React, { useState } from "react"
-import api from "../../api"
-import { Link } from "react-router-dom"
-import { Thumbnail } from "../Poster/Poster"
-import Genres from "../Genre/Genre"
+import React, { useState } from 'react'
+import api from '../../api'
+import { Link } from 'react-router-dom'
+import { Thumbnail } from '../Poster/Poster'
 
-import "./Search.css"
+import './Search.css'
 
 const Search = ({ toggleSearch }) => {
-  const [query, setQuery] = useState("")
+  const [query, setQuery] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState([])
   const [actors, setActors] = useState([])
@@ -50,8 +49,6 @@ const Search = ({ toggleSearch }) => {
       {isLoading && <div className="search-loading">Is searching {query}</div>}
 
       <section className="search-results-container">
-        
-
         {results && (
           <ul className="search-results-movies">
             {results.map((result, index) => (
@@ -74,9 +71,8 @@ const Search = ({ toggleSearch }) => {
 
 export default Search
 
-
 const SearchResultItem = ({ result }) => {
-  if (result.hasOwnProperty("gender")) {
+  if (result.hasOwnProperty('gender')) {
     return <ActorListItem actor={result} />
   } else {
     return <MovieListItem movie={result} />

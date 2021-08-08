@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react"
-import "./Trailers.css"
+import React, { useEffect, useState } from 'react'
+import './Trailers.css'
 
 const YOUTUBE_API_KEY =
-  "AIzaSyCwB6b4wIOFpOoEaIywqveePJRF8iWIkgQ" || process.env.YOUTUBE_API_KEY
+  'AIzaSyCwB6b4wIOFpOoEaIywqveePJRF8iWIkgQ' || process.env.YOUTUBE_API_KEY
 
 const Trailer = ({ movie }) => {
   const [trailers, setTrailers] = useState([])

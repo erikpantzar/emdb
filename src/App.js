@@ -1,27 +1,23 @@
-import React, { useState } from "react"
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
-import Movie from "./Views/Movie"
-import Home from "./Views/Home"
-import Discover from "./Views/Discover"
-import Search from "./components/Search/Search"
+import Movie from './Views/Movie'
+import Home from './Views/Home'
+import Discover from './Views/Discover'
+import Search from './components/Search/Search'
 
 export default function App() {
   const [searchVisible, setSearchVisible] = useState(false)
 
-
   return (
     <Router>
       <div>
-        <header>
-          {searchVisible && <Search toggleSearch={setSearchVisible} />}
-          
-        </header>
+        {searchVisible && <Search toggleSearch={setSearchVisible} />}
 
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Trending</Link>
             </li>
 
             <li>
@@ -39,7 +35,12 @@ export default function App() {
             </li>
 
             <li>
-              <button onClick={() => setSearchVisible(!searchVisible) } type="button">Search</button>
+              <button
+                onClick={() => setSearchVisible(!searchVisible)}
+                type="button"
+              >
+                Search
+              </button>
             </li>
           </ul>
         </nav>
