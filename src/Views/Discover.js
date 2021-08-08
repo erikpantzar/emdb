@@ -14,7 +14,6 @@ const Discover = () => {
 			const vote = 2
 
 			const res = await api.discover({ genres, cast, vote })
-			console.log({ res })
 			setDiscover(res)			
     }
 

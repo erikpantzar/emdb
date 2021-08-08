@@ -20,6 +20,7 @@ const Trending = () => {
       <h2>Trending</h2>
 
       <MovieList movies={movies} />
+
     </section>
   )
 }

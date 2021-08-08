@@ -1,6 +1,6 @@
 import React from "react"
 
-const thumbUrl = (id) => `https://image.tmdb.org/t/p/w92/${id}`
+const thumbUrl = (id) => `https://image.tmdb.org/t/p/w300/${id}`
 const imageUrl = (id) => `https://image.tmdb.org/t/p/w500/${id}`
 const fullImageUrl = (id) => `https://image.tmdb.org/t/p/original/${id}`
 
