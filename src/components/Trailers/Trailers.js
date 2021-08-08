@@ -26,6 +26,10 @@ const Trailer = ({ movie }) => {
     return <div>Loading trailers...</div>
   }
 
+  if (!trailers) {
+    return null
+  }
+
   return (
     <section>
       <h3>Trailers</h3>

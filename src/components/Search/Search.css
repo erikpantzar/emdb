@@ -19,7 +19,7 @@
 }
 
 .search-container {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(var(--default-background), 0.95);
   position: fixed;
   top: 0;
   left: 0;
