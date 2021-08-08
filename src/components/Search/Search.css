@@ -11,7 +11,7 @@
 }
 
 .animateIn {
-  animation: searchEntry 300ms ease-in-out  forwards;
+  animation: searchEntry 100ms ease-in-out  forwards;
 }
 
 .animateOut {
@@ -27,6 +27,7 @@
   bottom: 0;
   overflow: scroll;
   opacity: 0;
+  z-index: 2;
 }
 
 .search-close-button  {

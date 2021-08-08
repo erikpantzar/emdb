@@ -50,7 +50,7 @@ const Search = ({ toggleSearch }) => {
       {isLoading && <div className="search-loading">Is searching {query}</div>}
 
       <section className="search-results-container">
-        <Genres />
+        
 
         {results && (
           <ul className="search-results-movies">
