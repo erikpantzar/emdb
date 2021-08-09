@@ -39,8 +39,8 @@ const fetchAllGenres = async () => {
   return res
 }
 
-const fetchTrending = async (type = "movie", time = "week") => {
-  const url = `${baseURL}/trending/${type}/${time}?${key}`
+const fetchTrending = async ({ type = "movie", time = "week", page = 1 }) => {
+  const url = `${baseURL}/trending/${type}/${time}?${key}&page=${page}`
   const res = await (await fetch(url)).json()
 
   return res
@@ -61,18 +61,18 @@ const fetchKeyword = async (keyword) => {
 }
 
 // https://developers.themoviedb.org/3/discover/movie-discover
-const fetchDiscover = async ({ genres, cast = [], vote = 2, sort = 'popularity.desc' }) => {
+const fetchDiscover = async ({ genres, cast = [], vote = 2, sort = 'popularity.desc', page = 1 }) => {
 
   const string = `${baseURL}/discover/movie?${key}` 
     + (genres && '&with_genres=' + genres.toString())
     + (cast && '&with_cast=' + cast.toString())
     + (vote && '&vote_average.gte=' + vote)
     + (sort && '&sort_by=' + sort)
+    + (page && '&page=' + page)
 
   try {
     const res = await ( await fetch(string) ).json()
-    console.log(res.results)
-    return res.results
+    return res
   } catch(error) {
     return error
   }
