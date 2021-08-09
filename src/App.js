@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 
+import ScrollToTop from './ScrollToTop'
+
 import Movie from './Views/Movie'
 import Home from './Views/Home'
 import Discover from './Views/Discover'
@@ -12,7 +14,7 @@ export default function App() {
 
   return (
     <Router>
-      <div>
+       <ScrollToTop>
         {searchVisible && <Search toggleSearch={setSearchVisible} />}
 
         <nav>
@@ -48,7 +50,7 @@ export default function App() {
 
           <Route exact path={`/movie/:id`} component={Movie} />
         </Switch>
-      </div>
+      </ScrollToTop>
     </Router>
   )
 }

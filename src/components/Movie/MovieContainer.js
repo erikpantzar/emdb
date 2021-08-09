@@ -15,11 +15,12 @@ const MovieContainer = ({ id }) => {
     const fetch = async () => {
       const res = await api.movieDetails(id)
 
-      setLoading(false)
-
+    
       setMovie(res.movie)
       setSimilar(res.similar.results)
       setCredits(res.credits)
+
+      setLoading(false)
     }
 
     fetch()
