@@ -10,14 +10,13 @@ const Trending = () => {
 
   useEffect(() => {
     async function fetch() {
-
       if (page > maxPage) {
         return false
       }
 
       try {
         const res = await api.trending({ page: page })
-        setMovies([...movies, ...res.results])
+        setMovies((movies) => [...movies, ...res.results])
         setMaxPage(res.total_pages)
       } catch (error) {
         console.error(error)
@@ -25,7 +24,7 @@ const Trending = () => {
     }
 
     fetch()
-  }, [page])
+  }, [page, maxPage])
 
   const handleScroll = (event) => {
     const element = document.querySelector('#one')
