@@ -10,11 +10,11 @@ const MovieContainer = ({ id }) => {
   const [credits, setCredits] = useState({})
   const [similar, setSimilar] = useState({})
   const [isLoading, setLoading] = useState(true)
+  const [wantTrailer, setWantTrailer] = useState(false)
 
   useEffect(() => {
     const fetch = async () => {
       const res = await api.movieDetails(id)
-
     
       setMovie(res.movie)
       setSimilar(res.similar.results)
@@ -41,7 +41,7 @@ const MovieContainer = ({ id }) => {
           <MoviePresentation movie={movie} credits={credits} />
           {similar.length && <MovieList movies={similar} />}
         </div>
-        {movie.title && <Trailers movie={movie.title} />}
+        {movie.title  && wantTrailer && <Trailers movie={movie.title} />}
       </div>
     </section>
   )
