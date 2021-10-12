@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 import ScrollToTop from './ScrollToTop'
+import Nav from './components/Nav/Nav'
 
 import Movie from './Views/Movie'
 import Home from './Views/Home'
@@ -14,24 +15,10 @@ export default function App() {
 
   return (
     <Router>
-       <ScrollToTop>
+      <ScrollToTop>
         {searchVisible && <Search toggleSearch={setSearchVisible} />}
 
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Trending</Link>
-            </li>
-
-            <li>
-              <Link to="/discover">Discover</Link>
-            </li>
-
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-          </ul>
-        </nav>
+        <Nav />
 
         <button onClick={() => setSearchVisible(!searchVisible)} type="button">
           Search
