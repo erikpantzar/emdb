@@ -1,0 +1,27 @@
+.Credit {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Credit-figure {
+    margin: 0;
+    max-height: 44px;
+}
+
+.Credit-figure img {
+    width: auto;
+    height: 100%;
+}
+
+.Credit-placehodler {
+    background: #333333;
+    width: 44px;
+    height: 100%;
+    display: block;
+    border: 1px solid aquamarine;
+}
+
+
+.Credit-name {
+    font-size: 1em;
+}
