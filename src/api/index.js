@@ -1,6 +1,6 @@
-const KEY = "d1540083bbcc86fed537242f04bbf832"
-const baseURL = "https://api.themoviedb.org/3"
-const key = "api_key=" + KEY
+const KEY = 'd1540083bbcc86fed537242f04bbf832'
+const baseURL = 'https://api.themoviedb.org/3'
+const key = 'api_key=' + KEY
 
 // SEARCH
 const fetchMovie = async (movie) => {
@@ -39,7 +39,7 @@ const fetchAllGenres = async () => {
   return res
 }
 
-const fetchTrending = async ({ type = "movie", time = "week", page = 1 }) => {
+const fetchTrending = async ({ type = 'movie', time = 'week', page = 1 }) => {
   const url = `${baseURL}/trending/${type}/${time}?${key}&page=${page}`
   const res = await (await fetch(url)).json()
 
@@ -61,22 +61,27 @@ const fetchKeyword = async (keyword) => {
 }
 
 // https://developers.themoviedb.org/3/discover/movie-discover
-const fetchDiscover = async ({ genres, cast = [], vote = 2, sort = 'popularity.desc', page = 1 }) => {
-
-  const string = `${baseURL}/discover/movie?${key}` 
-    + (genres && '&with_genres=' + genres.toString())
-    + (cast && '&with_cast=' + cast.toString())
-    + (vote && '&vote_average.gte=' + vote)
-    + (sort && '&sort_by=' + sort)
-    + (page && '&page=' + page)
+const fetchDiscover = async ({
+  genres,
+  cast = [],
+  vote = 2,
+  sort = 'popularity.desc',
+  page = 1,
+}) => {
+  const string =
+    `${baseURL}/discover/movie?${key}` +
+    (genres && '&with_genres=' + genres.toString()) +
+    (cast && '&with_cast=' + cast.toString()) +
+    (vote && '&vote_average.gte=' + vote) +
+    (sort && '&sort_by=' + sort) +
+    (page && '&page=' + page)
 
   try {
-    const res = await ( await fetch(string) ).json()
+    const res = await (await fetch(string)).json()
     return res
-  } catch(error) {
+  } catch (error) {
     return error
   }
-  
 }
 
 export default {
@@ -89,5 +94,5 @@ export default {
 
   searchActor: fetchActor,
   search: fetchMovie,
-  discover: fetchDiscover
+  discover: fetchDiscover,
 }
