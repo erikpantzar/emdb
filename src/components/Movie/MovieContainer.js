@@ -41,20 +41,14 @@ const MovieContainer = ({ id }) => {
         <div>
           <MoviePresentation movie={movie} credits={credits} />
 
-          {credits && (
-            <section>
-              <h2>Credits</h2>
+          {credits && <Credits credits={credits} />}
 
-              {credits.cast.slice(0, 10).map((cred) => (
-                <Credits
-                  name={cred.name}
-                  img={cred.profile_path}
-                  id={cred.id}
-                />
-              ))}
-            </section>
+          {similar.length && (
+            <div>
+              <h2>Similiar movies</h2>
+              <MovieList movies={similar} />
+            </div>
           )}
-          {similar.length && <MovieList movies={similar} />}
         </div>
         {movie.title && wantTrailer && <Trailers movie={movie.title} />}
       </div>
