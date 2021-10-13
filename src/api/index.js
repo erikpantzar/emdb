@@ -5,7 +5,6 @@ const key = 'api_key=' + KEY
 // SEARCH
 const fetchMovie = async (movie) => {
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${KEY}&language=en-US&query=${movie}`
-
   return await (await fetch(url)).json()
 }
 
@@ -25,11 +24,21 @@ const fetchDetails = async (movieId) => {
   }
 }
 
-const fetchActor = async (name) => {
+const searchPerson = async (name) => {
   const url = `https://api.themoviedb.org/3/search/person?api_key=${KEY}&query=${name}&language=en-US&include_adult=false`
   const res = await (await fetch(url)).json()
 
   return res
+}
+
+const fetchPerson = async (id) => {
+  const url = `https://api.themoviedb.org/3/person/${id}?api_key=${KEY}&language=en-US&include_adult=false`
+  const res = await (await fetch(url)).json()
+
+  const url2 = `https://api.themoviedb.org/3/person/${id}/movie_credits?api_key=${KEY}&language=en-US&include_adult=false`
+  const credits = await (await fetch(url2)).json()
+
+  return { ...res, ...credits }
 }
 
 const fetchAllGenres = async () => {
@@ -92,7 +101,8 @@ export default {
   trending: fetchTrending,
   genres: fetchAllGenres,
 
-  searchActor: fetchActor,
+  fetchPerson: fetchPerson,
+  searchPerson: searchPerson,
   search: fetchMovie,
   discover: fetchDiscover,
 }

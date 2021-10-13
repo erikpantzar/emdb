@@ -15,7 +15,7 @@ const Search = ({ toggleSearch }) => {
     setIsLoading(true)
 
     const res = await api.search(query)
-    const actors = await api.searchActor(query)
+    const actors = await api.searchPerson(query)
 
     setIsLoading(false)
     setResults(res.results)

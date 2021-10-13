@@ -1,0 +1,40 @@
+.Credit-list {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.Credit {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: center;
+    text-align: center;
+    width: 110px;
+    margin: 0 0 0.8em;
+}
+
+.Credit-figure {
+    margin: 0;
+    height: 120px;
+}
+
+.Credit-figure img {
+    width: auto;
+    height: 120px;
+}
+
+.Credit-placeholder {
+    background: #333333;
+    width: 44px;
+    height: 120px;
+    display: block;
+    border: 1px solid aquamarine;
+    margin: 0 auto;
+}
+
+
+.Credit-name {
+    font-size: 12px;
+    margin: 0;
+}
