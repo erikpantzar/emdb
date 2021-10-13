@@ -4,6 +4,7 @@
     right: 20px;
     display: flex;
     justify-content: center;
+    z-index: var(--z-nav);
 }
 
 .Nav a {
@@ -11,5 +12,6 @@
     padding: 0 0;
     margin: 0 12px;
     text-decoration: none;
-    border-bottom: 1px solid var(--color-base);
+    color: var(--default-color-alternate);
+    border-bottom: 1px solid var(--default-color-alternate);
 }

@@ -1,12 +1,16 @@
 :root {
 	--default-background: 255, 240, 255;
 	--default-color: #333;
+	--default-color-alternate: rgba(200, 210, 200, 0.9);
+
+	--z-nav: 10;
 }
 
 @media (prefers-color-scheme: dark) {
 	:root {
 		--default-background: 50, 50, 50;
 		--default-color: #eee;
+		--default-color-alternate: rgba(100,100, 100, 0.9);
 	}
 }
 

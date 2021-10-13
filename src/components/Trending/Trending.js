@@ -10,7 +10,6 @@ const Trending = () => {
 
   useEffect(() => {
     async function fetch() {
-
       if (page > maxPage) {
         return false
       }
@@ -55,7 +54,7 @@ const Trending = () => {
 
   return (
     <section id="one">
-      <h2>Trending</h2>
+      <h1>Trending</h1>
 
       <MovieList movies={movies} />
 

@@ -9,7 +9,12 @@ const Credits = ({ credits }) => {
 
       <section className="Credit-list">
         {credits.cast.slice(0, 15).map((cred) => (
-          <CreditsItem name={cred.name} img={cred.profile_path} id={cred.id} />
+          <CreditsItem
+            key={cred.id}
+            name={cred.name}
+            img={cred.profile_path}
+            id={cred.id}
+          />
         ))}
       </section>
     </div>
