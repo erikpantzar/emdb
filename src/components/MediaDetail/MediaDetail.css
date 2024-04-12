@@ -1,0 +1,28 @@
+.trailers {
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trailers iframe {
+  border: 0;
+}
+
+.details-figure {
+  margin: 0;
+  padding: 0;
+  max-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details-poster {
+  max-height: 100vh;
+  width: auto;
+}
+
+.details-title {
+  margin: 0;
+}

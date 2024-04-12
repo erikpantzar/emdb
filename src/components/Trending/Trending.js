@@ -19,8 +19,7 @@ const matchGenre = (id, genres) => {
 export default () => {
   const [loading, setLoading] = useState(false)
   const [trending, setTrending] = useState([])
-  const [movieGenres, setMovieGenre] = useState(null)
-  const [tvGenres, setTvGenre] = useState(null)
+  const [genres, setGenres] = useState([])
 
   useEffect(() => {
     async function fetchData() {
@@ -46,74 +45,48 @@ export default () => {
       }
     }
 
-    async function listMoviesData() {
-      const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+    async function fetchGenres() {
+      const movieGenresUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`
+      const tvGenresUrl = `https://api.themoviedb.org/3/genre/tv/list?api_key=${API_KEY}`
 
       try {
-        const res = await (
-          await fetch(url, {
-            headers: {
-              accept: 'application/json',
-            },
-          })
-        ).json()
+        const [movieRes, tvRes] = await Promise.all([
+          fetch(movieGenresUrl, { headers: { accept: 'application/json' } }),
+          fetch(tvGenresUrl, { headers: { accept: 'application/json' } }),
+        ])
 
-        setMovieGenre(res)
+        const [movieGenres, tvGenres] = await Promise.all([
+          movieRes.json(),
+          tvRes.json(),
+        ])
+
+        setGenres([...movieGenres.genres, ...tvGenres.genres])
       } catch (err) {
         console.error(err)
-      }
-    }
-
-    async function listTvData() {
-      const url = `https://api.themoviedb.org/3/genre/tv/list?api_key=${API_KEY}`
-
-      try {
-        const res = await (
-          await fetch(url, {
-            headers: {
-              accept: 'application/json',
-            },
-          })
-        ).json()
-
-        setTvGenre(res)
-      } catch (err) {
-        console.error(err)
-        setTvGenre(null)
       }
     }
 
     fetchData()
-    listMoviesData()
-    listTvData()
+    fetchGenres()
   }, [])
 
   return (
     <div>
-      <h2>Trending media</h2>
+      <h2>Trending Tv & Movies</h2>
 
       {loading && '<h3>Loading</h3>'}
 
-      {tvGenres && movieGenres && trending && trending.length > 0 && (
+      {genres && trending && trending.length > 0 && (
         <section className="trending-list">
           {trending.map((trendItem, idx) => {
-            if (trendItem.media_type === 'tv') {
-              return (
-                <TvCard
-                  key={idx}
-                  item={trendItem}
-                  genres={tvGenres.genres}
-                ></TvCard>
-              )
-            } else {
-              return (
-                <MovieCard
-                  key={idx}
-                  item={trendItem}
-                  genres={movieGenres.genres}
-                ></MovieCard>
-              )
-            }
+            return (
+              <Card
+                key={idx}
+                item={trendItem}
+                genres={genres}
+                mediaType={trendItem.media_type}
+              />
+            )
           })}
         </section>
       )}
@@ -123,12 +96,20 @@ export default () => {
 
 const thumbUrl = (id) => `https://image.tmdb.org/t/p/w300/${id}`
 
-const TvCard = ({ item, genres }) => (
-  <article className="card card-tv" key={item.id}>
-    <div className="card-media-type">TV</div>
+const Card = ({ item, genres, mediaType }) => (
+  <article className={`card card-${mediaType}`} key={item.id}>
+    <div className="card-media-type">{mediaType.toUpperCase()}</div>
 
     <header>
-      <h2 className="card-title">{item.name}</h2>
+      {mediaType === 'tv' ? (
+        <Link to={`/tv/${item.id}`}>
+          <h2 className="card-title">{item.name}</h2>
+        </Link>
+      ) : (
+        <Link to={`/movie/${item.id}`}>
+          <h2 className="card-title">{item.title}</h2>
+        </Link>
+      )}
       {item.release_date && (
         <span className="card-release-date">Released: {item.release_date}</span>
       )}
@@ -145,34 +126,6 @@ const TvCard = ({ item, genres }) => (
       </div>
     </header>
 
-    <Thumbnail poster={item.poster_path} />
-  </article>
-)
-
-const MovieCard = ({ item, genres }) => (
-  <article className="card card-movie" key={item.id}>
-    <div className="card-media-type">Movie</div>
-
-    <header>
-      <Link to={`/movie/${item.id}`}>
-        <h2 className="card-title">{item.title}</h2>
-      </Link>
-      {item.release_date && (
-        <span className="card-release-date">Released: {item.release_date}</span>
-      )}
-
-      <div className="card-body-container">
-        <p className="card-body">{item.overview}</p>
-      </div>
-
-      <div className="genres">
-        {item.genre_ids.map((genreId) => (
-          <div className="card-tag genre" key={genreId}>
-            {matchGenre(genreId, genres)}
-          </div>
-        ))}
-      </div>
-    </header>
     <Thumbnail poster={item.poster_path} />
   </article>
 )
