@@ -18,13 +18,13 @@
 
 @media (min-width: 1224px) {
   .trending-list {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 
 @media (min-width: 1400px) {
   .trending-list {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   }
 }
 
@@ -32,8 +32,8 @@
   display: flex;
   justify-content: flex-end;
   flex-direction: column-reverse;
-  padding: 12px 18px;
-  margin: 0 0 12px;
+  padding: 0 0 12px;
+  margin: 0;
   color: #444;
 
   transition: background ease 300ms, color ease-out 200ms;
@@ -41,13 +41,23 @@
   position: relative;
 }
 
+.card-header {
+  padding: 0 1rem;
+}
+
 .card-release-date {
   font-size: 1rem;
-  color: #444;
+  color: #333;
   opacity: 0.7;
   font-weight: 100;
   margin: 0 0 0.25rem;
   display: inline-block;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card-release-date {
+    color: darkkhaki;
+  }
 }
 
 .card:hover {
@@ -91,11 +101,15 @@
   position: absolute;
   top: 12px;
   right: 18px;
-  background: var(--default-color);
-  color: var(--background-base);
+  background: rgba(0, 0, 0, 0.2);
+  color: white;
   padding: 8px 14px;
   text-align: center;
   font-size: 0.575rem;
+}
+
+.card-poster {
+  min-height: 100px;
 }
 
 .genres {
