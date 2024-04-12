@@ -121,7 +121,7 @@ const MediaDetail = ({ match }) => {
         )}
       </main>
 
-      {mediaData.similar && (
+      {mediaData.similar.results.length > 0 && (
         <aside className="details-similar">
           <h2>Similar</h2>
 

@@ -1,0 +1,28 @@
+.person-title {
+  margin: 0.5rem 0;
+}
+
+.person-profile-pic {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.person-main {
+  position: relative;
+  top: 0;
+  z-index: 5;
+  padding: 1rem;
+  background: var(--default-background);
+}
+
+@media (prefers-color-scheme: dark) {
+  .person-main {
+    background: black;
+  }
+}

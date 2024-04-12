@@ -26,11 +26,11 @@ export const TrendingCard = ({ item, mediaType }) => {
           {item.vote_average} ({item.vote_count})
         </div>
         {mediaType === 'tv' ? (
-          <Link to={`/tv/${item.id}`}>
+          <Link to={`/m/tv/${item.id}`} className="card-link">
             <h2 className="card-title">{item.name}</h2>
           </Link>
         ) : (
-          <Link to={`/movie/${item.id}`}>
+          <Link to={`/m/movie/${item.id}`} className="card-link">
             <h2 className="card-title">{item.title}</h2>
           </Link>
         )}
@@ -62,3 +62,5 @@ export const TrendingCard = ({ item, mediaType }) => {
     </article>
   )
 }
+
+export default TrendingCard
