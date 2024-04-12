@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './Trending.css'
+import { Link } from 'react-router-dom/cjs/react-router-dom.min'
 
 const API_KEY = process.env.REACT_APP_API_KEY
 
@@ -128,12 +129,18 @@ const TvCard = ({ item, genres }) => (
 
     <header>
       <h2 className="card-title">{item.name}</h2>
-      {item.release_date && <span>Released: {item.release_date}</span>}
-      <p>{item.overview}</p>
+      {item.release_date && (
+        <span className="card-release-date">Released: {item.release_date}</span>
+      )}
+      <div className="card-body-container">
+        <p className="card-body">{item.overview}</p>
+      </div>
 
       <div className="genres">
         {item.genre_ids.map((genreId) => (
-          <div className="card-tag genre">{matchGenre(genreId, genres)}</div>
+          <div className="card-tag genre" key={genreId}>
+            {matchGenre(genreId, genres)}
+          </div>
         ))}
       </div>
     </header>
@@ -147,13 +154,22 @@ const MovieCard = ({ item, genres }) => (
     <div className="card-media-type">Movie</div>
 
     <header>
-      <h2 className="card-title">{item.title}</h2>
-      {item.release_date && <span>Released: {item.release_date}</span>}
-      <p>{item.overview}</p>
+      <Link to={`/movie/${item.id}`}>
+        <h2 className="card-title">{item.title}</h2>
+      </Link>
+      {item.release_date && (
+        <span className="card-release-date">Released: {item.release_date}</span>
+      )}
+
+      <div className="card-body-container">
+        <p className="card-body">{item.overview}</p>
+      </div>
 
       <div className="genres">
         {item.genre_ids.map((genreId) => (
-          <div className="card-tag genre">{matchGenre(genreId, genres)}</div>
+          <div className="card-tag genre" key={genreId}>
+            {matchGenre(genreId, genres)}
+          </div>
         ))}
       </div>
     </header>
