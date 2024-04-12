@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { MediaContext } from './MediaContext'
+import Trailers from './Trailers'
 import { TrendingCard } from '../MediaCard/MediaCard'
 import './MediaDetail.css'
 
@@ -7,33 +9,20 @@ const big = (url) => `https://image.tmdb.org/t/p/original${url}`
 const profile = (url) => `https://image.tmdb.org/t/p/w200${url}`
 
 const MediaDetail = ({ match }) => {
-  const [data, setData] = useState({})
-
-  const API_KEY = process.env.REACT_APP_API_KEY
   const { id, media } = match.params
 
+  // Access mediaData and loading status from the context
+  const { mediaData, loading, getMediaData } = useContext(MediaContext)
+
+  // Example usage: Fetch media data for a specific ID
   useEffect(() => {
-    // movie specific
-    const fetchDetails = async () => {
-      const url = `https://api.themoviedb.org/3/${media}/${id}?api_key=${API_KEY}&append_to_response=credits,images,videos,similar`
+    getMediaData(id, media)
+    console.log('Running')
+    window.scrollTo(0, 0)
+    // eslint-disable-next-line
+  }, [id])
 
-      try {
-        const movie = await (await fetch(url)).json()
-
-        let trailers = []
-
-        movie.videos.results.map((video) => trailers.push(video))
-
-        setData({ ...movie, trailers })
-      } catch (err) {
-        console.error(err)
-      }
-    }
-
-    fetchDetails()
-  })
-
-  if (!data) {
+  if (loading) {
     return <div>Loading</div>
   }
 
@@ -42,22 +31,23 @@ const MediaDetail = ({ match }) => {
       <aside>
         <Link to="/">Back</Link>
       </aside>
+
       <header className="details-header">
         <figure className="details-figure">
           <img
             className="details-poster"
-            src={big(data.poster_path)}
-            alt={data.tagline}
+            src={big(mediaData.poster_path)}
+            alt={mediaData.tagline}
           />
         </figure>
 
-        {data.trailers && <Trailers trailers={data.trailers} />}
+        <Trailers trailers={mediaData.trailers} />
       </header>
 
       <main className="details-main">
-        {data.genres && (
+        {mediaData.genres && (
           <div className="genres">
-            {data.genres.map((genreObj) => (
+            {mediaData.genres.map((genreObj) => (
               <div className="genre" key={genreObj.id}>
                 {genreObj.name}
               </div>
@@ -66,26 +56,28 @@ const MediaDetail = ({ match }) => {
         )}
 
         <div>
-          {data.vote_average} ({data.vote_count})
+          {mediaData.vote_average} ({mediaData.vote_count})
         </div>
 
         <h1 className="details-title">
-          {media === 'tv' ? data.name : data.title}{' '}
+          {media === 'tv' ? mediaData.name : mediaData.title}
         </h1>
 
-        <h2 className="details-subtitle details-tagline">{data.tagline}</h2>
+        <h2 className="details-subtitle details-tagline">
+          {mediaData.tagline}
+        </h2>
 
-        <p>{data.overview}</p>
+        <p>{mediaData.overview}</p>
 
-        {data.credits && (
+        {mediaData.credits && (
           <section className="credits">
             <h3>Credits</h3>
 
-            {data.credits.cast && (
+            {mediaData.credits.cast && (
               <div>
                 <h4>Cast</h4>
                 <ul className="credit-container">
-                  {data.credits.cast.map((person) => (
+                  {mediaData.credits.cast.map((person) => (
                     <li className="credit-entry" key={person.name}>
                       <Link to={`/person/${person.id}`}>
                         {person.profile_path ? (
@@ -97,7 +89,7 @@ const MediaDetail = ({ match }) => {
                             />
                           </div>
                         ) : (
-                          <div className="credit-img-containerr"></div>
+                          <div className="credit-img-container"></div>
                         )}
 
                         {person.character ? (
@@ -129,43 +121,18 @@ const MediaDetail = ({ match }) => {
         )}
       </main>
 
-      {data.similar && (
+      {mediaData.similar && (
         <aside className="details-similar">
           <h2>Similar</h2>
 
           <section className="trending-list">
-            {data.similar.results.map((item) => (
+            {mediaData.similar.results.map((item) => (
               <TrendingCard item={item} mediaType={media} key={item.id} />
             ))}
           </section>
         </aside>
       )}
     </section>
-  )
-}
-
-export const Trailers = ({ trailers }) => {
-  if (!trailers) {
-    return null
-  }
-
-  return (
-    <div className="trailers">
-      {trailers &&
-        trailers
-          .filter((v) => v.site === 'YouTube')
-          .splice(0, 1)
-          .map((video, idx) => (
-            <iframe
-              title={idx}
-              key={idx}
-              type="text/html"
-              width="640"
-              height="360"
-              src={`https://www.youtube.com/embed/${video.key}?autoplay=0`}
-            ></iframe>
-          ))}
-    </div>
   )
 }
 
