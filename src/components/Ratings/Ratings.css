@@ -1,0 +1,16 @@
+.ratings {
+  color: gold;
+  display: flex;
+  align-items: center;
+}
+
+.ratings-count {
+  margin-left: 3px;
+  color: #806c00;
+}
+
+.ratings svg {
+  height: 14px;
+  width: 14px;
+  margin: 0 4px 0 0;
+}
