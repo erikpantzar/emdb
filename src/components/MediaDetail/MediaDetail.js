@@ -29,10 +29,6 @@ const MediaDetail = ({ match }) => {
 
   return (
     <section>
-      <aside>
-        <Link to="/">Back</Link>
-      </aside>
-
       <div className="details-top-container">
         <header className="details-header">
           <figure className="details-figure">

@@ -29,32 +29,38 @@ export const TrendingCard = ({ item, mediaType }) => {
           src={`https://image.tmdb.org/t/p/w300/${item.poster_path}`}
           alt="placeholder text"
         />
-        <header className="card-header">
-          <Ratings average={item.vote_average} count={item.vote_count} />
+      </Link>
+      <header className="card-header">
+        <Ratings average={item.vote_average} count={item.vote_count} />
 
+        <Link to={`/m/${mediaType}/${item.id}`}>
           {mediaType === 'tv' ? (
             <h2 className="card-title">{item.name}</h2>
           ) : (
             <h2 className="card-title">{item.title}</h2>
           )}
+        </Link>
 
-          {item.release_date && (
-            <span className="card-release-date">{item.release_date}</span>
-          )}
+        {item.release_date && (
+          <span className="card-release-date">{item.release_date}</span>
+        )}
 
-          <div className="card-body-container">
-            <p className="card-body">{item.overview}</p>
-          </div>
+        <div className="card-body-container">
+          <p className="card-body">{item.overview}</p>
+        </div>
 
-          <div className="genres">
-            {item.genre_ids.map((genreId) => (
-              <div className="card-tag genre" key={genreId}>
-                {matchGenre(genreId, genres)}
-              </div>
-            ))}
-          </div>
-        </header>
-      </Link>
+        <div className="genres">
+          {item.genre_ids.map((genreId) => (
+            <Link
+              className="card-tag genre"
+              key={genreId}
+              to={`/d/${mediaType}/${item.id}/${genreId}`}
+            >
+              {matchGenre(genreId, genres)}
+            </Link>
+          ))}
+        </div>
+      </header>
     </article>
   )
 }

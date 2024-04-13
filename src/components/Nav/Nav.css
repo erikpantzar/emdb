@@ -1,0 +1,40 @@
+.nav-base {
+  position: fixed;
+  z-index: 20;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: var(--default-background);
+  color: var(--default-color);
+  height: var(--nav-height);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav-base {
+    background: black;
+  }
+}
+
+.nav-element {
+  height: var(--nav-height);
+  display: inline-block;
+  font-size: 0.875rem;
+  text-decoration: none;
+  line-height: var(--nav-height);
+  font-weight: 100;
+  font-style: normal;
+  padding: 0 12px;
+
+  transition: color 340ms ease-in;
+}
+
+.nav-element:hover {
+  transition: color 100ms ease-in-out;
+  color: #aaa;
+  text-shadow: 0 1px 1px solid #333;
+}

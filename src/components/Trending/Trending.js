@@ -10,8 +10,8 @@ export default () => {
   const trending = useContext(TrendingContext).trending
 
   return (
-    <div>
-      <h1>Trending Tv & Movies</h1>
+    <article>
+      <h1 className="trending-title">Trending Tv & Movies</h1>
 
       {genres && trending && trending.length > 0 && (
         <section className="trending-list">
@@ -26,6 +26,6 @@ export default () => {
           })}
         </section>
       )}
-    </div>
+    </article>
   )
 }

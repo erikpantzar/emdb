@@ -6,7 +6,6 @@ const Ratings = ({ average, count }) => (
   <div className="ratings">
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      class="ipc-icon ipc-icon--star-inline"
       viewBox="0 0 24 24"
       fill="currentColor"
       role="presentation"

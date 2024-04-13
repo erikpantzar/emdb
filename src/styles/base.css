@@ -11,6 +11,8 @@ body {
 
   background: var(--background-base);
   color: var(--color-base);
+
+  padding-bottom: var(--nav-height);
 }
 
 body,

@@ -37,8 +37,8 @@
 
 .card {
   display: flex;
-  justify-content: flex-end;
-  flex-direction: column-reverse;
+  justify-content: flex-start;
+  flex-direction: column;
   padding: 0 0 12px;
   margin: 0;
   color: #444;
@@ -51,9 +51,14 @@
 .card-header {
   padding: 0 1rem;
 }
-
+.card-tag,
 .card-link {
   text-decoration: none;
+}
+
+.card-tag:hover {
+  background: gold;
+  color: black;
 }
 
 .card-release-date {

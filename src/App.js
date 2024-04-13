@@ -8,6 +8,9 @@ import { MediaProvider } from './components/MediaDetail/MediaContext'
 import Trending from './components/Trending/Trending'
 import Detail from './components/MediaDetail/MediaDetail'
 import Person from './components/Person/Person'
+import Discover from './components/Discover/Discover'
+
+import { BaseNav } from './components/Nav/Nav'
 
 export default function App() {
   return (
@@ -19,11 +22,13 @@ export default function App() {
               <TrendingProvider>
                 <Trending />
               </TrendingProvider>
+
+              <BaseNav />
             </Route>
 
             <Route exact path={`/person/:id`} component={Person}></Route>
-
             <Route path={`/m/:media/:id`} component={Detail} />
+            <Route path={`/d/:media/:id/:tag`} component={Discover} />
           </Switch>
         </MediaProvider>
       </GenreProvider>

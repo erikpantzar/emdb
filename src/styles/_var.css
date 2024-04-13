@@ -4,6 +4,7 @@
   --default-color-alternate: rgba(200, 210, 200, 0.9);
 
   --z-nav: 10;
+  --nav-height: 48px;
 }
 
 @media (prefers-color-scheme: dark) {

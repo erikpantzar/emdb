@@ -26,6 +26,7 @@ const Person = ({ match }) => {
     }
 
     fetchData()
+    // eslint-disable-next-line
   }, [])
 
   if (loading) {
@@ -57,7 +58,6 @@ const Person = ({ match }) => {
             <div className="person-bio">
               <p>{person.biography}</p>
             </div>
-
             <aside>
               <h4>
                 Also known as:{' '}
@@ -117,9 +117,9 @@ const Person = ({ match }) => {
             {person.combined_credits.cast
               .sort((a, b) => b.vote_average - a.vote_average)
               .filter((voted) => voted.vote_count > 10)
-              .map((credited) => (
+              .map((credited, i) => (
                 <MediaCard
-                  key={credited.id}
+                  key={`${credited.id}-${i}`}
                   item={credited}
                   mediaType={credited.media_type}
                 />
