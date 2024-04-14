@@ -19,7 +19,6 @@ const MediaDetail = ({ match }) => {
   // Example usage: Fetch media data for a specific ID
   useEffect(() => {
     getMediaData(id, media)
-    console.log('Running')
     window.scrollTo(0, 0)
     // eslint-disable-next-line
   }, [id])
@@ -31,7 +30,7 @@ const MediaDetail = ({ match }) => {
   return (
     <>
       <ElementInView />
-      <section
+      <article
         id={'top'}
         datalabel={mediaData.title ? mediaData.title : mediaData.name}
       >
@@ -147,7 +146,7 @@ const MediaDetail = ({ match }) => {
             </section>
           </aside>
         )}
-      </section>
+      </article>
     </>
   )
 }

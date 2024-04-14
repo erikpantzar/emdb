@@ -11,7 +11,10 @@ export default () => {
 
   return (
     <article>
-      <h1 className="trending-title">Trending Tv & Movies</h1>
+      <header className="page-header">
+        <h1 className="page-title">Trending Tv & Movies</h1>
+        <p>Explore the latest and greatest in movies and TV!</p>
+      </header>
 
       {genres && trending && trending.length > 0 && (
         <section className="trending-list">

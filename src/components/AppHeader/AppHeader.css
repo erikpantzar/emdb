@@ -1,0 +1,18 @@
+article {
+  padding-top: 4rem;
+}
+
+.app-header {
+  position: fixed;
+  z-index: 30;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  right: 0;
+}
+
+.app-header-inner {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}

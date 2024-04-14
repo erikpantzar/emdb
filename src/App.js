@@ -10,11 +10,15 @@ import Detail from './components/MediaDetail/MediaDetail'
 import Person from './components/Person/Person'
 import Discover from './components/Discover/Discover'
 
+import AppHeader from './components/AppHeader/AppHeader'
+
 export default function App() {
   return (
     <Router>
       <GenreProvider>
         <MediaProvider>
+          <AppHeader />
+
           <Switch>
             <Route exact path="/">
               <TrendingProvider>

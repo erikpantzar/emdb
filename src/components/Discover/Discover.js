@@ -27,16 +27,22 @@ const Discover = ({ match }) => {
 
     fetchData()
 
+    // scrolling to top
+    document.body.scrollIntoView()
+
     // eslint-disable-next-line
-  }, [])
+  }, [tag])
 
   if (loading) {
     return <div>Loading...</div>
   }
 
   return (
-    <div>
-      <h1>Discover</h1>
+    <article>
+      <header className="page-header">
+        <h1 className="page-title">Discover</h1>
+        <p>Find something in this category</p>
+      </header>
 
       {data.results && (
         <div className="card-list">
@@ -45,7 +51,7 @@ const Discover = ({ match }) => {
           ))}
         </div>
       )}
-    </div>
+    </article>
   )
 }
 
