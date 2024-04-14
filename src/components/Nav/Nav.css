@@ -38,3 +38,45 @@
   color: #aaa;
   text-shadow: 0 1px 1px solid #333;
 }
+
+.nav-bar-details {
+  position: fixed;
+  bottom: 20px;
+  z-index: 50;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-bar-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+
+  background: rgba(0, 0, 0, 0.8);
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.nav-item {
+  border: 1px solid #343434;
+  border-radius: 4px;
+  margin: 0 2px;
+  line-height: 1.5;
+}
+
+.nav-item a {
+  text-decoration: none;
+  padding: 8px 10px;
+  line-height: 1.5;
+  display: block;
+  font-weight: 100;
+  font-style: normal;
+  color: inherit;
+}
+
+.nav-item-active {
+  color: gold;
+}

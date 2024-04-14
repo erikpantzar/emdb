@@ -10,8 +10,6 @@ import Detail from './components/MediaDetail/MediaDetail'
 import Person from './components/Person/Person'
 import Discover from './components/Discover/Discover'
 
-import { BaseNav } from './components/Nav/Nav'
-
 export default function App() {
   return (
     <Router>
@@ -22,8 +20,6 @@ export default function App() {
               <TrendingProvider>
                 <Trending />
               </TrendingProvider>
-
-              <BaseNav />
             </Route>
 
             <Route exact path={`/person/:id`} component={Person}></Route>
