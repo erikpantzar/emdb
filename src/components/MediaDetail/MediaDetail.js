@@ -82,7 +82,7 @@ const MediaDetail = ({ match }) => {
           <Trailers trailers={mediaData.trailers} />
         </div>
 
-        {mediaData.credits && (
+        {mediaData.credits.length > 0 && (
           <section className="credits" id="credits">
             <h3>Credits</h3>
 
@@ -134,14 +134,11 @@ const MediaDetail = ({ match }) => {
         )}
 
         {mediaData.similar.results.length > 0 && (
-          <aside
-            className="details-similar"
-            id="similar"
-            datalabel={`Similiar ${media} like ${
-              mediaData.title ? mediaData.title : mediaData.name
-            }`}
-          >
-            <h2>Similar</h2>
+          <aside className="details-similar" datalabel="Similar" id="similar">
+            <h2>
+              Here are similar {media === 'tv' ? 'TV shows' : 'movies'} like{' '}
+              {mediaData.title ? mediaData.title : mediaData.name}
+            </h2>
 
             <section className="trending-list">
               {mediaData.similar.results.map((item) => (

@@ -60,10 +60,10 @@ export const ElementInView = () => {
         // Skip adding the element if id is "root"
         let label = ''
         const headingElement = container.querySelector('h1, h2, h3, h4, h5, h6')
-        if (headingElement) {
-          label = headingElement.textContent
-        } else if (container.hasAttribute('datalabel')) {
+        if (container.hasAttribute('datalabel')) {
           label = container.getAttribute('datalabel')
+        } else if (headingElement) {
+          label = headingElement.textContent
         }
 
         if (label.trim() !== '') {
