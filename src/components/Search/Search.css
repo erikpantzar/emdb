@@ -1,0 +1,126 @@
+body {
+  font: 100 0.875rem/1.8 sans-serif;
+}
+
+.header {
+  display: flex;
+}
+
+:root {
+  --search-width: 440px;
+  --radius: 4px;
+  --input-background: rgb(220, 220, 220);
+  --result-background: rgb(100, 100, 100);
+  --search-height: 44px;
+}
+
+.search-container {
+  display: flex;
+  position: relative;
+  height: var(--search-height);
+  z-index: 3;
+}
+
+.search-form {
+  position: relative;
+  /* background: var(--input-background); */
+  width: var(--search-width);
+  height: var(--search-height);
+  border-radius: var(--radius);
+  z-index: 4;
+}
+
+.search-input {
+  border: none;
+  border-radius: var(--radius);
+  padding: 8px 0 8px 12px;
+  height: var(--search-height);
+  box-sizing: border-box;
+  margin: 0;
+  font: 100 0.875rem/1.8 sans-serif;
+  width: 100%;
+  background: rgba(255, 255, 255, 0); /* meant to be transparent */
+  background: var(--input-background);
+
+  transition: all 340ms ease-in-out;
+}
+
+.search-input.touched,
+.search-input:focus {
+  background: rgb(80, 80, 80);
+  color: #efefef;
+
+  transition: all 120ms ease-out;
+}
+
+.search-input:active,
+.search-input:focus {
+  outline: none;
+}
+
+.search-results {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 1rem 1rem;
+  box-sizing: border-box;
+  width: var(--search-width);
+
+  position: absolute;
+  z-index: 2;
+  top: 0;
+
+  opacity: 0;
+  background: var(--result-background);
+  border-radius: var(--radius);
+}
+
+.visible .search-results {
+  opacity: 1;
+}
+
+.search-backdrop {
+  position: fixed;
+  z-index: 1;
+  visibility: hidden;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.visible .search-backdrop {
+  visibility: visible;
+}
+
+.search-select-container {
+  background: rgba(0, 0, 0, 0);
+  color: #333;
+  position: relative;
+  height: var(--search-height);
+  z-index: 15;
+}
+
+.search-select {
+  background: rgba(0, 0, 0, 0);
+  border: none;
+  text-align: center;
+  color: #333;
+  padding: 0 8px;
+  line-height: 44px;
+  height: var(--search-height);
+  border-radius: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .search-select {
+    background: rgb(80, 80, 80);
+    color: #ccc;
+  }
+}
+
+.search-select option {
+  color: inherit;
+}

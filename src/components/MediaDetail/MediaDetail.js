@@ -81,7 +81,7 @@ const MediaDetail = ({ match }) => {
           <Trailers trailers={mediaData.trailers} />
         </div>
 
-        {mediaData.credits.length > 0 && (
+        {mediaData.credits.cast.length > 0 && (
           <section className="credits" id="credits">
             <h3>Credits</h3>
 
@@ -123,6 +123,41 @@ const MediaDetail = ({ match }) => {
                             <span className="credit-name">{person.name}</span>
                           </h5>
                         )}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </section>
+        )}
+
+        {mediaData.credits.crew.length > 0 && (
+          <section className="credits">
+            {mediaData.credits.crew && (
+              <div id="crew">
+                <h4>Crew</h4>
+                <ul className="credit-container">
+                  {mediaData.credits.crew.map((person) => (
+                    <li className="credit-entry" key={person.name}>
+                      <Link to={`/person/${person.id}`}>
+                        {person.profile_path ? (
+                          <div className="credit-img-container">
+                            <img
+                              src={profile(person.profile_path)}
+                              alt={person.name}
+                              className="credit-img"
+                            />
+                          </div>
+                        ) : (
+                          <div className="credit-img-container"></div>
+                        )}
+
+                        <h5 className="credit-played">
+                          <span className="credit-name">
+                            {person.name} - {person.job}
+                          </span>
+                        </h5>
                       </Link>
                     </li>
                   ))}

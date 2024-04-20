@@ -1,18 +1,48 @@
-article {
-  padding-top: 4rem;
-}
-
 .app-header {
-  position: fixed;
+  position: relative;
   z-index: 30;
-  top: 10px;
   left: 0;
   width: 100%;
   right: 0;
+  line-height: 44px;
+  padding: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-header {
+    background: rgb(40, 40, 40);
+  }
 }
 
 .app-header-inner {
   padding: 1rem;
   display: flex;
   justify-content: space-between;
+}
+
+@media (min-width: 500px) {
+  .app-header-search {
+    margin-left: 1rem;
+  }
+}
+
+.app-first {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.app-logo {
+  border-radius: 8px;
+  padding: 0 14px;
+  border: 1px solid #222;
+  text-decoration: none;
+  color: #000;
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-logo {
+    border: 1px solid #ddd;
+    color: #fff;
+  }
 }
