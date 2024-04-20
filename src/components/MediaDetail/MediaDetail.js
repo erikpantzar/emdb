@@ -89,8 +89,8 @@ const MediaDetail = ({ match }) => {
               <div>
                 <h4>Cast</h4>
                 <ul className="credit-container">
-                  {mediaData.credits.cast.map((person) => (
-                    <li className="credit-entry" key={person.name}>
+                  {mediaData.credits.cast.map((person, i) => (
+                    <li className="credit-entry" key={`${person.id}-cast-${i}`}>
                       <Link to={`/person/${person.id}`}>
                         {person.profile_path ? (
                           <div className="credit-img-container">
@@ -138,8 +138,8 @@ const MediaDetail = ({ match }) => {
               <div id="crew">
                 <h4>Crew</h4>
                 <ul className="credit-container">
-                  {mediaData.credits.crew.map((person) => (
-                    <li className="credit-entry" key={person.name}>
+                  {mediaData.credits.crew.map((person, i) => (
+                    <li className="credit-entry" key={`${person.id}-${i}`}>
                       <Link to={`/person/${person.id}`}>
                         {person.profile_path ? (
                           <div className="credit-img-container">

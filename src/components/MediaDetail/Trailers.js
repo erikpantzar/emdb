@@ -10,6 +10,7 @@ const Trailers = ({ trailers }) => {
       {trailers &&
         trailers
           .filter((v) => v.site === 'YouTube')
+          .filter((v) => v.type === 'Trailer')
           .splice(0, 1)
           .map((video, idx) => (
             <iframe

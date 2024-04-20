@@ -20,9 +20,26 @@ const Person = ({ match }) => {
         const json = await res.json()
         setPerson(json)
         setLoading(false)
+
+        // fetching extra data source
+        extra(json)
       } catch (err) {
         console.error(err)
         setLoading(false)
+      }
+    }
+
+    async function extra(person) {
+      const external_id = person.imdb_id
+      const url = `https://api.themoviedb.org/3/find/${external_id}?api_key=${API_KEY}&external_source=imdb_id`
+
+      try {
+        const res = await fetch(url)
+        const json = await res.json()
+        // console.log()
+        setPerson({ ...person, ...json.person_results[0] })
+      } catch (err) {
+        console.error(err)
       }
     }
 
@@ -112,6 +129,29 @@ const Person = ({ match }) => {
             </div>
           </div>
         </main>
+
+        {person.known_for && (
+          <section
+            className="person-credits"
+            id="known_for"
+            datalabel="Known for"
+          >
+            <header>
+              <h2>Known for</h2>
+              <p>Have you seen all of these?</p>
+            </header>
+
+            <div className="card-list">
+              {person.known_for.map((known, i) => (
+                <MediaCard
+                  key={`${known.id}-${i}`}
+                  item={known}
+                  mediaType={known.media_type}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         {person.combined_credits && (
           <section className="person-credits" id="credits">
