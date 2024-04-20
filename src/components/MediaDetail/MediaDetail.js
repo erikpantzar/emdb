@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MediaContext } from './MediaContext'
-import Trailers from './Trailers'
+import Trailers, { TrailerHeader } from './Trailers'
 import { TrendingCard } from '../MediaCard/MediaCard'
 import Ratings from '../Ratings/Ratings'
 import { ElementInView } from '../Nav/Nav'
@@ -34,6 +34,11 @@ const MediaDetail = ({ match }) => {
         id={'top'}
         datalabel={mediaData.title ? mediaData.title : mediaData.name}
       >
+        {mediaData.trailers.length > 0 && (
+          <div>
+            <TrailerHeader trailers={mediaData.trailers} />
+          </div>
+        )}
         <div className="details-top-container">
           <header className="details-header">
             <figure className="details-figure">
@@ -73,13 +78,15 @@ const MediaDetail = ({ match }) => {
           </main>
         </div>
 
-        <div
-          className="details-trailer-wrapper"
-          id="Trailer"
-          datalabel="Trailer"
-        >
-          <Trailers trailers={mediaData.trailers} />
-        </div>
+        {mediaData.trailers.length > 0 && (
+          <div
+            className="details-trailer-wrapper"
+            id="Trailer"
+            datalabel="Trailer"
+          >
+            <Trailers trailers={mediaData.trailers} />
+          </div>
+        )}
 
         {mediaData.credits.cast.length > 0 && (
           <section className="credits" id="credits">

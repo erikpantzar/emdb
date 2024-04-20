@@ -5,6 +5,16 @@
   align-items: center;
 }
 
+.details-top-container {
+  background: linear-gradient(to bottom, transparent 15%, white 30%);
+}
+
+@media (prefers-color-scheme: dark) {
+  .details-top-container {
+    background: linear-gradient(to bottom, transparent 0%, black 100%);
+  }
+}
+
 @media (min-width: 768px) {
   .details-top-container {
     display: flex;
