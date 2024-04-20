@@ -6,6 +6,7 @@
   right: 0;
   line-height: 44px;
   padding: 0;
+  background: rgb(180, 180, 180);
 }
 
 @media (prefers-color-scheme: dark) {
