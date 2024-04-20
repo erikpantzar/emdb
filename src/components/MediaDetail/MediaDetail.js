@@ -5,6 +5,7 @@ import Trailers, { TrailerHeader } from './Trailers'
 import { TrendingCard } from '../MediaCard/MediaCard'
 import Ratings from '../Ratings/Ratings'
 import { ElementInView } from '../Nav/Nav'
+import Network from './Network'
 import './MediaDetail.css'
 
 const big = (url) => `https://image.tmdb.org/t/p/original${url}`
@@ -51,6 +52,11 @@ const MediaDetail = ({ match }) => {
           </header>
 
           <main className="details-main">
+            {mediaData.networks &&
+              typeof mediaData.networks === 'object' &&
+              mediaData.networks
+                // .filter((network) => network.name === 'Netflix')
+                .map((network, i) => <Network key={i} network={network} />)}
             <Ratings
               average={mediaData.vote_average}
               count={mediaData.vote_count}
