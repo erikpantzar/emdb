@@ -6,7 +6,7 @@ const API_KEY = process.env.REACT_APP_API_KEY
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState('')
-  const [selectValue, setSelectValue] = useState('tv') // Default value
+  // const [selectValue, setSelectValue] = useState('tv') // Default value
   const [searchResults, setResults] = useState(null)
   const [loading, setLoading] = useState(false)
   const [showResults, setShowresults] = useState(false)
@@ -24,7 +24,7 @@ const Search = () => {
       try {
         setLoading(true)
         const response = await fetch(
-          `https://api.themoviedb.org/3/search/${selectValue}?api_key=${API_KEY}&query=${searchInput}`
+          `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&query=${searchInput}`
         )
         const data = await response.json()
         setResults(data)
@@ -53,7 +53,7 @@ const Search = () => {
     return () => {
       clearTimeout(timeoutId)
     }
-  }, [searchInput, selectValue])
+  }, [searchInput])
 
   useEffect(() => {
     console.log('running')
@@ -93,19 +93,6 @@ const Search = () => {
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
-        </div>
-
-        <div className="search-select-container">
-          <select
-            className="search-select"
-            name="type"
-            id="type"
-            value={selectValue}
-            onChange={(e) => setSelectValue(e.target.value)}
-          >
-            <option value="tv">TV</option>
-            <option value="movie">Movies</option>
-          </select>
         </div>
 
         {searchResults && searchResults.results.length > 0 && (
