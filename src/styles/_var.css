@@ -1,22 +1,71 @@
 :root {
-	--default-background: 255, 240, 255;
-	--default-color: #333;
-	--default-color-alternate: rgba(200, 210, 200, 0.9);
+  color-scheme: dark light;
 
-	--z-nav: 10;
+  --bg: #0c0b09;
+  --bg-raised: #14120f;
+  --surface: #1c1915;
+  --surface-hover: #26221c;
+  --line: rgba(255, 238, 214, 0.12);
+  --line-strong: rgba(255, 238, 214, 0.3);
+  --text: #f3ede4;
+  --text-muted: #aca295;
+  --accent: #ffb547;
+  --accent-ink: #ffb547;
+  --on-accent: #1a1206;
+  --header-bg: rgba(12, 11, 9, 0.8);
+  --shadow: 0 1.2rem 2.4rem -1rem rgba(0, 0, 0, 0.75);
+  --glow: 0 0 0 1px rgba(255, 181, 71, 0.4),
+    0 1.4rem 3rem -1.2rem rgba(255, 166, 41, 0.4);
+  --grain-opacity: 0.07;
+
+  --font-display: 'Big Shoulders Display', 'Oswald', 'Arial Narrow', sans-serif;
+  --font-body: 'Instrument Sans', 'Segoe UI', sans-serif;
+
+  --step--1: clamp(0.8rem, 0.77rem + 0.15vw, 0.875rem);
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.0625rem);
+  --step-1: clamp(1.2rem, 1.05rem + 0.6vw, 1.5rem);
+  --step-2: clamp(1.6rem, 1.3rem + 1.4vw, 2.5rem);
+  --step-3: clamp(2.4rem, 1.7rem + 3.2vw, 4.25rem);
+  --step-4: clamp(3rem, 1.9rem + 5.5vw, 6.5rem);
+
+  --space-2xs: clamp(0.25rem, 0.22rem + 0.15vw, 0.375rem);
+  --space-xs: clamp(0.5rem, 0.45rem + 0.25vw, 0.625rem);
+  --space-s: clamp(0.75rem, 0.68rem + 0.35vw, 1rem);
+  --space-m: clamp(1rem, 0.9rem + 0.6vw, 1.5rem);
+  --space-l: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+  --space-xl: clamp(2rem, 1.6rem + 2vw, 3.5rem);
+  --gutter: clamp(1rem, 0.5rem + 2.5vw, 3rem);
+
+  --radius-s: 0.375rem;
+  --radius-m: 0.75rem;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 160ms;
+  --dur: 320ms;
+
+  --card-width: clamp(8.75rem, 6.5rem + 8vw, 12rem);
+  --header-h: 4rem;
+  --z-header: 20;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--default-background: 50, 50, 50;
-		--default-color: #eee;
-		--default-color-alternate: rgba(100,100, 100, 0.9);
-	}
-}
-
-/* THeme  */
-
-:root {
-	--background-base: var(--default-background);
-	--color-base: var(--default-color);
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f5efe5;
+    --bg-raised: #ece4d7;
+    --surface: #fffaf2;
+    --surface-hover: #f1e8da;
+    --line: rgba(40, 28, 12, 0.14);
+    --line-strong: rgba(40, 28, 12, 0.34);
+    --text: #1c1813;
+    --text-muted: #5c5348;
+    --accent: #f0a12f;
+    --accent-ink: #8a4a00;
+    --on-accent: #1a1206;
+    --header-bg: rgba(245, 239, 229, 0.86);
+    --shadow: 0 1rem 2rem -1rem rgba(60, 40, 10, 0.35);
+    --glow: 0 0 0 1px rgba(138, 74, 0, 0.4),
+      0 1.2rem 2.4rem -1.2rem rgba(138, 74, 0, 0.4);
+    --grain-opacity: 0.05;
+  }
 }
