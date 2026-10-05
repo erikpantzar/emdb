@@ -1,0 +1,71 @@
+.Person-hero {
+  display: grid;
+  grid-template-columns: clamp(8rem, 24vw, 18rem) minmax(0, 1fr);
+  gap: var(--space-l);
+  align-items: start;
+  margin: 0 0 var(--space-l);
+}
+
+.Person-photo {
+  position: relative;
+  aspect-ratio: 2 / 3;
+  overflow: hidden;
+  border-radius: var(--radius-m);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.Person-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.Person-name {
+  font-size: var(--step-4);
+  margin: 0 0 var(--space-s);
+}
+
+.Bio {
+  max-width: 46rem;
+}
+
+.Bio-text {
+  white-space: pre-line;
+  color: var(--text);
+}
+
+.Bio-text.is-clamped {
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.Person-section {
+  margin: 0 0 var(--space-xl);
+}
+
+.Person-section-title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  margin: 0 0 var(--space-m);
+}
+
+.Person-count {
+  font-family: var(--font-body);
+  font-size: var(--step--1);
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+@media (max-width: 40rem) {
+  .Person-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .Person-photo {
+    width: 10rem;
+  }
+}

@@ -1,14 +1,14 @@
 import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import api from '../api'
-import InfiniteList from '../components/InfiniteList/InfiniteList'
-import PeopleList from '../components/PeopleList/PeopleList'
+import { InfiniteList } from '../components/Infinite/Infinite'
+import { PeopleGrid } from '../components/PersonCard/PersonCard'
 import QueryForm from '../components/QueryForm/QueryForm'
 
 const isActor = (person) => person.known_for_department === 'Acting'
 const isCreator = (person) => !isActor(person)
 
-const PeopleHub = ({ title, isMatch }) => {
+const PeopleHub = ({ title, lede, isMatch }) => {
   const [params] = useSearchParams()
   const query = params.get('q') || ''
 
@@ -20,18 +20,32 @@ const PeopleHub = ({ title, isMatch }) => {
   }
 
   return (
-    <section>
-      <h1>{title}</h1>
-      <QueryForm placeholder={`Search ${title.toLowerCase()}`} />
+    <section className="Page">
+      <div className="Page-head">
+        <div>
+          <span className="Eyebrow">{query ? `Results for “${query}”` : lede}</span>
+          <h1>{title}</h1>
+        </div>
+      </div>
+      <QueryForm label={`Find ${title.toLowerCase()}`} />
 
       <InfiniteList key={query} fetchPage={fetchPage}>
-        {(people) => <PeopleList people={people} />}
+        {(people) => <PeopleGrid people={people} />}
       </InfiniteList>
     </section>
   )
 }
 
-const Creators = () => <PeopleHub title="Creators" isMatch={isCreator} />
-const Actors = () => <PeopleHub title="Actors" isMatch={isActor} />
+const Creators = () => (
+  <PeopleHub
+    title="Creators"
+    lede="Directors, writers, composers"
+    isMatch={isCreator}
+  />
+)
+
+const Actors = () => (
+  <PeopleHub title="Actors" lede="Popular right now" isMatch={isActor} />
+)
 
 export { Creators, Actors }

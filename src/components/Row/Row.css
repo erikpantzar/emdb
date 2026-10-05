@@ -1,0 +1,94 @@
+.Row {
+  margin: 0 0 var(--space-xl);
+  animation: rise var(--dur) var(--ease-out) both;
+}
+
+.Row-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-s);
+  margin: 0 0 var(--space-m);
+}
+
+.Row-title {
+  font-size: var(--step-2);
+}
+
+.Row-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  flex: none;
+}
+
+.Row-all {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0 0.25rem;
+  font-weight: 600;
+  color: var(--accent-ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.3em;
+}
+
+.Row-all:hover {
+  text-decoration-thickness: 2px;
+}
+
+.Row-step {
+  display: none;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  transition: background var(--dur-fast), border-color var(--dur-fast);
+}
+
+.Row-step:hover {
+  background: var(--surface-hover);
+  border-color: var(--accent-ink);
+}
+
+.Row-step svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+@media (min-width: 56rem) {
+  .Row-step {
+    display: grid;
+  }
+}
+
+.Row-track {
+  list-style: none;
+  margin: 0 calc(var(--gutter) * -1);
+  padding: 0.5rem var(--gutter) var(--space-s);
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--card-width);
+  gap: var(--space-m);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--gutter);
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+.Row-track > li {
+  scroll-snap-align: start;
+}
+
+.Row-status {
+  color: var(--text-muted);
+  grid-column: span 3;
+  align-self: center;
+}

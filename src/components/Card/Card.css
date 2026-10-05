@@ -1,0 +1,187 @@
+.Grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-width), 1fr));
+  gap: var(--space-l) var(--space-m);
+}
+
+.Card {
+  position: relative;
+  min-width: 0;
+}
+
+.Card-link {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  color: inherit;
+  text-decoration: none;
+  border-radius: var(--radius-m);
+}
+
+.Card-link:focus-visible {
+  outline-offset: 4px;
+}
+
+.Card-poster {
+  position: relative;
+  display: block;
+  aspect-ratio: 2 / 3;
+  margin: 0 0 var(--space-xs);
+  overflow: hidden;
+  border-radius: var(--radius-m);
+  background: linear-gradient(160deg, var(--surface-hover), var(--surface));
+  box-shadow: var(--shadow);
+  transition: transform var(--dur) var(--ease-out),
+    box-shadow var(--dur) var(--ease-out);
+}
+
+.Card-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease-out), filter var(--dur);
+}
+
+.Card-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: end;
+  padding: var(--space-s);
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.Card-link:hover .Card-poster,
+.Card-link:focus-visible .Card-poster {
+  transform: translateY(-0.3rem);
+  box-shadow: var(--glow);
+}
+
+.Card-link:hover .Card-poster img,
+.Card-link:focus-visible .Card-poster img {
+  transform: scale(1.045);
+}
+
+.Card.is-seen .Card-poster img {
+  filter: grayscale(0.7) brightness(0.55);
+}
+
+.Card-rating {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 0.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--radius-s);
+  background: rgba(12, 11, 9, 0.84);
+  color: #fff;
+  font-size: var(--step--1);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  backdrop-filter: blur(6px);
+}
+
+.Card-rating span[aria-hidden] {
+  color: #ffb547;
+}
+
+.Card-title {
+  font-weight: 600;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: color var(--dur-fast);
+}
+
+.Card-link:hover .Card-title {
+  color: var(--accent-ink);
+}
+
+.Card-meta {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Card-meta:empty {
+  display: none;
+}
+
+.Card-genres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+
+.Card-genre {
+  padding: 0.05rem 0.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.Card-seen {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(12, 11, 9, 0.72);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity var(--dur-fast), transform var(--dur) var(--ease-out),
+    background var(--dur-fast);
+}
+
+.Card-seen svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+.Card:hover .Card-seen,
+.Card:focus-within .Card-seen,
+.Card-seen[aria-pressed='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+.Card-seen[aria-pressed='true'] {
+  background: #ffb547;
+  border-color: #ffb547;
+  color: #1a1206;
+}
+
+.Card-seen:hover {
+  transform: scale(1.08);
+}
+
+@media (hover: none) {
+  .Card-seen {
+    opacity: 1;
+    transform: none;
+  }
+}

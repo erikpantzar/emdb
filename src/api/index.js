@@ -19,14 +19,64 @@ const get = async (path, params = {}) => {
 const fetchMovie = (query) => get('/search/movie', { query })
 
 const fetchDetails = async (movieId) => {
-  const { credits, similar, keywords, ...movie } = await get(
+  const { credits, similar, recommendations, keywords, ...movie } = await get(
     `/movie/${movieId}`,
     {
-      append_to_response: 'credits,similar,keywords',
+      append_to_response: 'credits,similar,recommendations,keywords',
     }
   )
 
-  return { movie, credits, similar, keywords: keywords.keywords }
+  return {
+    movie,
+    credits,
+    similar,
+    recommendations,
+    keywords: keywords.keywords,
+  }
+}
+
+const fetchPersonCredits = (id) => get(`/person/${id}/movie_credits`)
+
+const fetchGenreRow = (genre, page = 1) =>
+  get('/discover/movie', {
+    with_genres: genre,
+    sort_by: 'popularity.desc',
+    'vote_count.gte': 150,
+    include_adult: false,
+    page,
+  })
+
+const decadeRange = (decade) => ({
+  'primary_release_date.gte': `${decade}-01-01`,
+  'primary_release_date.lte': `${decade + 9}-12-31`,
+})
+
+const fetchBrowse = async ({ genre, year, decade, sort, page }) => {
+  if (sort === 'trending' && !year && !decade) {
+    const res = await get('/trending/movie/week', { page })
+    if (!genre) return res
+    return {
+      ...res,
+      results: res.results.filter((movie) =>
+        movie.genre_ids?.includes(Number(genre))
+      ),
+    }
+  }
+
+  const params = { include_adult: false, page }
+  if (genre) params.with_genres = genre
+  if (year) params.primary_release_year = year
+  if (decade) Object.assign(params, decadeRange(decade))
+
+  if (sort === 'top') {
+    params.sort_by = 'vote_average.desc'
+    params['vote_count.gte'] = year ? 200 : decade ? 500 : 1500
+  } else {
+    params.sort_by = 'popularity.desc'
+    params['vote_count.gte'] = 20
+  }
+
+  return get('/discover/movie', params)
 }
 
 const fetchVideos = (movieId) => get(`/movie/${movieId}/videos`)
@@ -117,4 +167,7 @@ export default {
   discover: fetchDiscover,
   topOfYear: fetchTopOfYear,
   topOfDecade: fetchTopOfDecade,
+  personCredits: fetchPersonCredits,
+  genreRow: fetchGenreRow,
+  browse: fetchBrowse,
 }

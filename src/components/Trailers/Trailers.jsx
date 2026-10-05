@@ -1,66 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import api from '../../api'
-import './Trailers.css'
+import useAsync from '../../hooks/useAsync'
 
 const Trailers = ({ movieId }) => {
-  const [trailers, setTrailers] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState()
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-      try {
-        const res = await api.videos(movieId)
-        setTrailers(res.results.filter((video) => video.site === 'YouTube'))
-      } catch (err) {
-        setError(err.message)
-      }
-      setIsLoading(false)
-    }
-
-    fetchData()
-  }, [movieId])
-
-  if (isLoading) {
-    return <div>Loading trailers...</div>
-  }
+  const { data, error } = useAsync(() => api.videos(movieId), [movieId])
 
   if (error) {
-    return <div>Could not load trailers: {error}</div>
+    return <p className="Status">Could not load trailers: {error}</p>
   }
 
+  if (!data) {
+    return (
+      <p className="Status" role="status">
+        Loading trailers…
+      </p>
+    )
+  }
+
+  const trailers = data.results.filter((video) => video.site === 'YouTube')
+
   if (!trailers.length) {
-    return <div>No trailers found.</div>
+    return <p className="Status">No trailers found.</p>
   }
 
   return (
-    <section>
-      <h3>Trailers</h3>
-
-      <ul className="trailer-list">
-        {trailers.map((trailer) => (
-          <li key={trailer.id} className="trailer-list-item">
-            <TrailerPlayer videoId={trailer.key} title={trailer.name} />
-          </li>
-        ))}
-      </ul>
-    </section>
+    <ul className="Trailers">
+      {trailers.map((trailer) => (
+        <li key={trailer.id}>
+          <iframe
+            title={trailer.name || `Trailer ${trailer.key}`}
+            src={`https://www.youtube.com/embed/${trailer.key}?autoplay=0`}
+            allowFullScreen
+            loading="lazy"
+          />
+        </li>
+      ))}
+    </ul>
   )
 }
 
 export default Trailers
-
-const TrailerPlayer = ({ videoId, title }) => {
-  return (
-    <iframe
-      title={title || `ytplayer-${videoId}`}
-      width="640"
-      height="360"
-      src={`https://www.youtube.com/embed/${videoId}?autoplay=0`}
-      allowFullScreen
-    ></iframe>
-  )
-}
-
-export { TrailerPlayer }

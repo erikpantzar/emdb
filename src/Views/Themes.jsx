@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import api from '../api'
-import InfiniteList from '../components/InfiniteList/InfiniteList'
+import { InfiniteList } from '../components/Infinite/Infinite'
 import QueryForm from '../components/QueryForm/QueryForm'
-import '../styles/Tabs.css'
 
 const starters = [
   { id: 4379, name: 'time travel' },
@@ -32,13 +31,15 @@ const starters = [
 ]
 
 const ThemeChips = ({ themes }) => (
-  <nav className="Tabs">
+  <ul className="Chips Chips--large">
     {themes.map((theme) => (
-      <Link key={theme.id} to={`/theme/${theme.id}`} className="Tabs-item">
-        {theme.name}
-      </Link>
+      <li key={theme.id}>
+        <Link to={`/theme/${theme.id}`} className="Chip">
+          {theme.name}
+        </Link>
+      </li>
     ))}
-  </nav>
+  </ul>
 )
 
 const Themes = () => {
@@ -46,9 +47,16 @@ const Themes = () => {
   const query = params.get('q') || ''
 
   return (
-    <section>
-      <h1>Themes</h1>
-      <QueryForm placeholder="Search themes" />
+    <section className="Page">
+      <div className="Page-head">
+        <div>
+          <span className="Eyebrow">
+            {query ? `Results for “${query}”` : 'Start somewhere'}
+          </span>
+          <h1>Themes</h1>
+        </div>
+      </div>
+      <QueryForm label="Find a theme" />
 
       {query ? (
         <InfiniteList
@@ -63,7 +71,5 @@ const Themes = () => {
     </section>
   )
 }
-
-export { ThemeChips }
 
 export default Themes

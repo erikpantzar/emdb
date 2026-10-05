@@ -1,34 +1,33 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import api from '../api'
-import InfiniteMovies from '../components/InfiniteMovies/InfiniteMovies'
+import useAsync from '../hooks/useAsync'
 import { useVisit } from '../components/Trail/useTrail'
+import { InfiniteMovies } from '../components/Infinite/Infinite'
+import { HideSeenSwitch } from '../components/Seen/Seen'
 
 const Theme = () => {
   const { id } = useParams()
-  const [theme, setTheme] = useState({})
-  useVisit(theme.id === id && `#${theme.name}`)
-
-  useEffect(() => {
-    let active = true
-    setTheme({})
-
-    api
-      .keyword(id)
-      .then((res) => active && setTheme({ id, name: res.name }))
-      .catch(() => active && setTheme({ id, name: `Theme ${id}` }))
-
-    return () => {
-      active = false
-    }
-  }, [id])
+  const { data, error } = useAsync(() => api.keyword(id), [id])
+  const name = data?.name || (error ? `Theme ${id}` : null)
+  useVisit(name && `#${name}`)
 
   return (
-    <section>
-      <p>
-        <Link to="/themes">All themes</Link>
-      </p>
-      <h1>{theme.id === id ? theme.name : '...'}</h1>
+    <section className="Page">
+      <div className="Page-head">
+        <div>
+          <Link to="/themes" className="Eyebrow">
+            Theme
+          </Link>
+          <h1>{name || '…'}</h1>
+        </div>
+      </div>
+
+      <div className="Toolbar">
+        <div className="Toolbar-end">
+          <HideSeenSwitch />
+        </div>
+      </div>
 
       <InfiniteMovies
         key={id}

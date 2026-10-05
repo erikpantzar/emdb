@@ -10,17 +10,26 @@ const Trail = () => {
   if (steps.length === 0) return null
 
   return (
-    <ol className="Trail">
-      {steps.map((step) => (
-        <li key={step.path} className="Trail-step">
-          {step.path === pathname ? (
-            <span className="Trail-current">{step.label}</span>
-          ) : (
-            <Link to={step.path}>{step.label}</Link>
-          )}
-        </li>
-      ))}
-    </ol>
+    <nav className="Trail" aria-label="Your trail">
+      <span className="Trail-label" aria-hidden="true">
+        Trail
+      </span>
+      <ol className="Trail-list">
+        {steps.map((step) => (
+          <li key={step.path} className="Trail-step">
+            {step.path === pathname ? (
+              <span className="Trail-current" aria-current="page">
+                {step.label}
+              </span>
+            ) : (
+              <Link to={step.path} className="Trail-link">
+                {step.label}
+              </Link>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
   )
 }
 
