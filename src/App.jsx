@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import ScrollToTop from './ScrollToTop'
 import Nav from './components/Nav/Nav'
+import Trail from './components/Trail/Trail'
 
 import Movie from './Views/Movie'
 import Home from './Views/Home'
@@ -25,6 +26,7 @@ export default function App() {
       {searchVisible && <Search toggleSearch={setSearchVisible} />}
 
       <Nav />
+      <Trail />
 
       <button onClick={() => setSearchVisible(!searchVisible)} type="button">
         Search

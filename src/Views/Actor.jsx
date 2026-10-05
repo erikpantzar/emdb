@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import api from '../api'
 import ActorPresentation from '../components/Actor/ActorPresentation'
+import { useVisit } from '../components/Trail/useTrail'
 
 const Actor = () => {
   const { personId } = useParams()
   const [actor, setActor] = useState()
   const [error, setError] = useState()
+  useVisit(String(actor?.id) === personId && actor.name)
 
   useEffect(() => {
     let active = true

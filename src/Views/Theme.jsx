@@ -2,19 +2,21 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import api from '../api'
 import InfiniteMovies from '../components/InfiniteMovies/InfiniteMovies'
+import { useVisit } from '../components/Trail/useTrail'
 
 const Theme = () => {
   const { id } = useParams()
-  const [name, setName] = useState('')
+  const [theme, setTheme] = useState({})
+  useVisit(theme.id === id && `#${theme.name}`)
 
   useEffect(() => {
     let active = true
-    setName('')
+    setTheme({})
 
     api
       .keyword(id)
-      .then((res) => active && setName(res.name))
-      .catch(() => active && setName(`Theme ${id}`))
+      .then((res) => active && setTheme({ id, name: res.name }))
+      .catch(() => active && setTheme({ id, name: `Theme ${id}` }))
 
     return () => {
       active = false
@@ -26,7 +28,7 @@ const Theme = () => {
       <p>
         <Link to="/themes">All themes</Link>
       </p>
-      <h1>{name || '...'}</h1>
+      <h1>{theme.id === id ? theme.name : '...'}</h1>
 
       <InfiniteMovies
         key={id}

@@ -6,11 +6,13 @@ import Trailers from '../Trailers/Trailers'
 import MovieList from '../MovieList/MovieList'
 import Credits from '../Credits/Credits'
 import { ThemeChips } from '../../Views/Themes'
+import { useVisit } from '../Trail/useTrail'
 
 const MovieContainer = ({ id }) => {
   const [details, setDetails] = useState()
   const [error, setError] = useState()
   const [wantTrailer, setWantTrailer] = useState(false)
+  useVisit(String(details?.movie.id) === id && details.movie.title)
 
   useEffect(() => {
     let active = true
