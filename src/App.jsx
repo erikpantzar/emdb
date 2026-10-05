@@ -25,7 +25,7 @@ const NotFound = () => (
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <ScrollToTop />
       <a href="#main" className="SkipLink">
         Skip to content
