@@ -22,10 +22,16 @@ const Row = ({ title, eyebrow, seeAll, children }) => {
   return (
     <section className="Row" aria-labelledby={headingId}>
       <div className="Row-head">
-        <h2 id={headingId} className="Row-title">
-          {eyebrow && <span className="Eyebrow">{eyebrow}</span>}
-          {title}
-        </h2>
+        <div>
+          {eyebrow && (
+            <span className="Eyebrow" aria-hidden="true">
+              {eyebrow}
+            </span>
+          )}
+          <h2 id={headingId} className="Row-title">
+            {title}
+          </h2>
+        </div>
         <div className="Row-actions">
           {seeAll && (
             <Link to={seeAll} className="Row-all">
