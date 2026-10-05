@@ -5,6 +5,7 @@ import './Nav.css'
 const Nav = () => (
   <nav className="Nav">
     <Link to="/now">Now</Link>
+    <Link to="/top">Top</Link>
     <Link to="/trending">Trending</Link>
     <Link to="/discover">Discover</Link>
     <Link to="/about">About</Link>

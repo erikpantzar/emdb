@@ -62,6 +62,23 @@ const fetchDiscover = ({
     page,
   })
 
+const fetchTopOfYear = (year, page) =>
+  get('/discover/movie', {
+    primary_release_year: year,
+    sort_by: 'vote_average.desc',
+    'vote_count.gte': 300,
+    page,
+  })
+
+const fetchTopOfDecade = (decade, page) =>
+  get('/discover/movie', {
+    'primary_release_date.gte': `${decade}-01-01`,
+    'primary_release_date.lte': `${decade + 9}-12-31`,
+    sort_by: 'vote_average.desc',
+    'vote_count.gte': 1000,
+    page,
+  })
+
 export { get }
 
 export default {
@@ -78,4 +95,6 @@ export default {
   searchPerson: searchPerson,
   search: fetchMovie,
   discover: fetchDiscover,
+  topOfYear: fetchTopOfYear,
+  topOfDecade: fetchTopOfDecade,
 }
