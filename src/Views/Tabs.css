@@ -1,0 +1,22 @@
+.Tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 1.5rem;
+}
+
+.Tabs-item {
+  padding: 6px 14px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  text-decoration: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.Tabs-item.is-active {
+  background: var(--color-base);
+  color: rgb(var(--background-base));
+}

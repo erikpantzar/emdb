@@ -4,7 +4,8 @@ import './Nav.css'
 
 const Nav = () => (
   <nav className="Nav">
-    <Link to="/">Trending</Link>
+    <Link to="/now">Now</Link>
+    <Link to="/trending">Trending</Link>
     <Link to="/discover">Discover</Link>
     <Link to="/about">About</Link>
   </nav>

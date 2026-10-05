@@ -6,6 +6,7 @@ import Nav from './components/Nav/Nav'
 
 import Movie from './Views/Movie'
 import Home from './Views/Home'
+import Now from './Views/Now'
 import Discover from './Views/Discover'
 import Actor from './Views/Actor'
 import About from './Views/About'
@@ -26,7 +27,9 @@ export default function App() {
       </button>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Now />} />
+        <Route path="/now" element={<Now />} />
+        <Route path="/trending" element={<Home />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/about" element={<About />} />
         <Route path="/movie/:id" element={<Movie />} />

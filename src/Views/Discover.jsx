@@ -1,68 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import MovieList from '../components/MovieList/MovieList'
+import React from 'react'
 import api from '../api'
+import InfiniteMovies from '../components/InfiniteMovies/InfiniteMovies'
 
-const Discover = () => {
-  const [discover, setDiscover] = useState([])
-  const [page, setPage] = useState(1)
-  const [maxPage, setMaxPage] = useState(2)
-  const [isLoading, setIsLoading] = useState(false)
+const fetchPage = (page) =>
+  api.discover({ genres: [28], cast: [62], vote: 1, page })
 
-  useEffect(() => {
-    async function fetch() {
-      setIsLoading(true)
-      const genres = [28]
-      const cast = [62]
-      const vote = 1
-
-      if (page < maxPage + 1) {
-        const res = await api.discover({ genres, cast, vote, page })
-        setDiscover([...discover, ...res.results])
-        setMaxPage(res.total_pages)
-        setIsLoading(false)
-      }
-    }
-
-    if (!isLoading) {
-      fetch()
-    }
-  }, [page])
-
-  const trackScroll = (event) => {
-    const element = document.querySelector('#one')
-    const win = window.innerHeight
-    const bottom = element.getBoundingClientRect().bottom
-
-    if (bottom <= win) {
-      if (page < maxPage + 1) {
-        setPage(page + 1)
-      }
-    }
-  }
-
-  useEffect(() => {
-    function handleListen() {
-      document.addEventListener('scroll', trackScroll)
-    }
-
-    handleListen()
-
-    return function cleanup() {
-      document.removeEventListener('scroll', trackScroll)
-    }
-  }, [page])
-
-  return (
-    <div>
-      <h1>Discover</h1>
-
-      {discover.length > -1 && (
-        <div id="one">
-          <MovieList movies={discover} />
-        </div>
-      )}
-    </div>
-  )
-}
+const Discover = () => (
+  <div>
+    <h1>Discover</h1>
+    <InfiniteMovies fetchPage={fetchPage} />
+  </div>
+)
 
 export default Discover

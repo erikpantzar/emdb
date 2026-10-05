@@ -43,6 +43,10 @@ const fetchAllGenres = () => get('/genre/movie/list')
 const fetchTrending = ({ type = 'movie', time = 'week', page = 1 }) =>
   get(`/trending/${type}/${time}`, { page })
 
+const fetchNowPlaying = (page) => get('/movie/now_playing', { page })
+
+const fetchUpcoming = (page) => get('/movie/upcoming', { page })
+
 const fetchDiscover = ({
   genres = [],
   cast = [],
@@ -66,6 +70,8 @@ export default {
   videos: fetchVideos,
 
   trending: fetchTrending,
+  nowPlaying: fetchNowPlaying,
+  upcoming: fetchUpcoming,
   genres: fetchAllGenres,
 
   fetchPerson: fetchPerson,
