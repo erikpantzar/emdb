@@ -104,8 +104,10 @@ const ActorListItem = ({ actor }) => {
   // actor.id
   return (
     <div>
-      <Thumbnail poster={actor.profile_path} />
-      <h3>{actor.name}</h3>
+      <Link to={`/person/${actor.id}`}>
+        <Thumbnail poster={actor.profile_path} />
+        <h3>{actor.name}</h3>
+      </Link>
 
       <h4>Known for:</h4>
       <ul>

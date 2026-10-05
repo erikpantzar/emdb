@@ -1,9 +1,11 @@
 .Nav {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+    position: sticky;
+    top: 0;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 0 8px;
+    background: rgba(var(--background-base), 0.95);
     z-index: var(--z-nav);
 }
 
@@ -12,6 +14,6 @@
     padding: 0 0;
     margin: 0 12px;
     text-decoration: none;
-    color: var(--default-color-alternate);
+    color: var(--color-base);
     border-bottom: 1px solid var(--default-color-alternate);
 }

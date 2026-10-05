@@ -19,17 +19,33 @@ const get = async (path, params = {}) => {
 const fetchMovie = (query) => get('/search/movie', { query })
 
 const fetchDetails = async (movieId) => {
-  const { credits, similar, ...movie } = await get(`/movie/${movieId}`, {
-    append_to_response: 'credits,similar',
-  })
+  const { credits, similar, keywords, ...movie } = await get(
+    `/movie/${movieId}`,
+    {
+      append_to_response: 'credits,similar,keywords',
+    }
+  )
 
-  return { movie, credits, similar }
+  return { movie, credits, similar, keywords: keywords.keywords }
 }
 
 const fetchVideos = (movieId) => get(`/movie/${movieId}/videos`)
 
-const searchPerson = (query) =>
-  get('/search/person', { query, include_adult: false })
+const searchPerson = (query, page = 1) =>
+  get('/search/person', { query, page, include_adult: false })
+
+const fetchPopularPeople = (page) => get('/person/popular', { page })
+
+const fetchKeyword = (id) => get(`/keyword/${id}`)
+
+const searchKeyword = (query, page) => get('/search/keyword', { query, page })
+
+const fetchMoviesWithKeyword = (id, page) =>
+  get('/discover/movie', {
+    with_keywords: id,
+    sort_by: 'popularity.desc',
+    page,
+  })
 
 const fetchPerson = async (id) => {
   const person = await get(`/person/${id}`)
@@ -93,6 +109,10 @@ export default {
 
   fetchPerson: fetchPerson,
   searchPerson: searchPerson,
+  popularPeople: fetchPopularPeople,
+  keyword: fetchKeyword,
+  searchKeyword: searchKeyword,
+  moviesWithKeyword: fetchMoviesWithKeyword,
   search: fetchMovie,
   discover: fetchDiscover,
   topOfYear: fetchTopOfYear,

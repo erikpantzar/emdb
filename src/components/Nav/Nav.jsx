@@ -8,6 +8,9 @@ const Nav = () => (
     <Link to="/top">Top</Link>
     <Link to="/trending">Trending</Link>
     <Link to="/discover">Discover</Link>
+    <Link to="/creators">Creators</Link>
+    <Link to="/actors">Actors</Link>
+    <Link to="/themes">Themes</Link>
     <Link to="/about">About</Link>
   </nav>
 )

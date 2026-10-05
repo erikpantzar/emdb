@@ -2,7 +2,7 @@ import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import api from '../api'
 import InfiniteMovies from '../components/InfiniteMovies/InfiniteMovies'
-import './Tabs.css'
+import '../styles/Tabs.css'
 
 const tabs = {
   playing: { label: 'In cinemas', fetchPage: api.nowPlaying },

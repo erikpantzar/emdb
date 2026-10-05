@@ -8,6 +8,9 @@ import Movie from './Views/Movie'
 import Home from './Views/Home'
 import Now from './Views/Now'
 import Top from './Views/Top'
+import { Creators, Actors } from './Views/People'
+import Themes from './Views/Themes'
+import Theme from './Views/Theme'
 import Discover from './Views/Discover'
 import Actor from './Views/Actor'
 import About from './Views/About'
@@ -35,7 +38,12 @@ export default function App() {
         <Route path="/discover" element={<Discover />} />
         <Route path="/about" element={<About />} />
         <Route path="/movie/:id" element={<Movie />} />
+        <Route path="/person/:personId" element={<Actor />} />
         <Route path="/actor/:personId" element={<Actor />} />
+        <Route path="/creators" element={<Creators />} />
+        <Route path="/actors" element={<Actors />} />
+        <Route path="/themes" element={<Themes />} />
+        <Route path="/theme/:id" element={<Theme />} />
       </Routes>
     </BrowserRouter>
   )

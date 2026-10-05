@@ -2,7 +2,7 @@ import React from 'react'
 import { useSearchParams } from 'react-router-dom'
 import api from '../api'
 import InfiniteMovies from '../components/InfiniteMovies/InfiniteMovies'
-import './Tabs.css'
+import '../styles/Tabs.css'
 
 const thisYear = new Date().getFullYear()
 const years = Array.from({ length: thisYear - 1919 }, (_, i) => thisYear - i)

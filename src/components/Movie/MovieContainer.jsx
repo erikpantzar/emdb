@@ -5,6 +5,7 @@ import MoviePresentation from './MoviePresentation'
 import Trailers from '../Trailers/Trailers'
 import MovieList from '../MovieList/MovieList'
 import Credits from '../Credits/Credits'
+import { ThemeChips } from '../../Views/Themes'
 
 const MovieContainer = ({ id }) => {
   const [details, setDetails] = useState()
@@ -35,11 +36,13 @@ const MovieContainer = ({ id }) => {
     return <div>Loading...</div>
   }
 
-  const { movie, credits, similar } = details
+  const { movie, credits, similar, keywords } = details
 
   return (
     <section>
       <MoviePresentation movie={movie} />
+
+      {keywords.length > 0 && <ThemeChips themes={keywords} />}
 
       <button type="button" onClick={() => setWantTrailer(!wantTrailer)}>
         {wantTrailer ? 'Hide trailers' : 'Show trailers'}
