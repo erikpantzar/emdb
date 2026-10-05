@@ -10,16 +10,24 @@ const Search = ({ toggleSearch }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [results, setResults] = useState([])
   const [actors, setActors] = useState([])
+  const [error, setError] = useState()
 
   const doSearch = async () => {
     setIsLoading(true)
+    setError(undefined)
 
-    const res = await api.search(query)
-    const actors = await api.searchPerson(query)
+    try {
+      const [res, people] = await Promise.all([
+        api.search(query),
+        api.searchPerson(query),
+      ])
+      setResults(res.results)
+      setActors(people.results)
+    } catch (err) {
+      setError(err.message)
+    }
 
     setIsLoading(false)
-    setResults(res.results)
-    setActors(actors.results)
   }
 
   return (
@@ -47,6 +55,7 @@ const Search = ({ toggleSearch }) => {
       </form>
 
       {isLoading && <div className="search-loading">Is searching {query}</div>}
+      {error && <div className="search-loading">Search failed: {error}</div>}
 
       <section className="search-results-container">
         {results && (

@@ -1,29 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import api from '../api'
 import ActorPresentation from '../components/Actor/ActorPresentation'
 
 const Actor = () => {
   const { personId } = useParams()
-  const [isLoading, setLoading] = useState(true)
   const [actor, setActor] = useState()
+  const [error, setError] = useState()
 
   useEffect(() => {
-    const fetch = async () => {
-      setLoading(true)
-      const res = await api.fetchPerson(personId)
-      setActor(res)
-      setLoading(false)
-    }
+    let active = true
+    setActor(undefined)
+    setError(undefined)
 
-    fetch()
+    api
+      .fetchPerson(personId)
+      .then((res) => active && setActor(res))
+      .catch((err) => active && setError(err.message))
 
     return () => {
-      return false
+      active = false
     }
   }, [personId])
 
-  if (isLoading) {
+  if (error) {
+    return <div>Could not load person: {error}</div>
+  }
+
+  if (!actor) {
     return <div>Loading...</div>
   }
 
