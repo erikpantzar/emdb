@@ -18,6 +18,16 @@ const get = async (path, params = {}) => {
 
 const fetchMovie = (query) => get('/search/movie', { query })
 
+const fetchSuggestions = async (query) => {
+  const { results } = await get('/search/multi', {
+    query,
+    include_adult: false,
+  })
+  return results
+    .filter((item) => ['movie', 'person'].includes(item.media_type))
+    .slice(0, 8)
+}
+
 const fetchDetails = async (movieId) => {
   const { credits, similar, recommendations, keywords, ...movie } = await get(
     `/movie/${movieId}`,
@@ -164,6 +174,7 @@ export default {
   searchKeyword: searchKeyword,
   moviesWithKeyword: fetchMoviesWithKeyword,
   search: fetchMovie,
+  suggest: fetchSuggestions,
   discover: fetchDiscover,
   topOfYear: fetchTopOfYear,
   topOfDecade: fetchTopOfDecade,
