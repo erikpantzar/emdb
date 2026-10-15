@@ -5,7 +5,6 @@ import useAsync from '../hooks/useAsync'
 import { MovieGrid } from '../components/Card/MovieCard'
 import { Row } from '../components/Row/Row'
 import { PersonCard } from '../components/PersonCard/PersonCard'
-import { HideSeenSwitch } from '../components/Seen/Seen'
 
 const Search = () => {
   const [params] = useSearchParams()
@@ -26,7 +25,6 @@ const Search = () => {
           <span className="Eyebrow">Search</span>
           <h1>{query ? `“${query}”` : 'Search'}</h1>
         </div>
-        <HideSeenSwitch />
       </div>
 
       {error && <p className="Status">Search failed: {error}</p>}

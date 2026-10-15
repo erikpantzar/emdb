@@ -16,19 +16,6 @@ const Svg = ({ children, ...props }) => (
   </svg>
 )
 
-const EyeIcon = () => (
-  <Svg>
-    <path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z" />
-    <circle cx="12" cy="12" r="3" />
-  </Svg>
-)
-
-const CheckIcon = () => (
-  <Svg>
-    <path d="m5 12.5 4.5 4.5L19 7.5" />
-  </Svg>
-)
-
 const ChevronIcon = ({ direction = 'right' }) => (
   <Svg>
     <path d={direction === 'left' ? 'm15 5-7 7 7 7' : 'm9 5 7 7-7 7'} />
@@ -60,4 +47,4 @@ const PlayIcon = () => (
   </Svg>
 )
 
-export { EyeIcon, CheckIcon, ChevronIcon, MenuIcon, CloseIcon, SearchIcon, PlayIcon }
+export { ChevronIcon, MenuIcon, CloseIcon, SearchIcon, PlayIcon }

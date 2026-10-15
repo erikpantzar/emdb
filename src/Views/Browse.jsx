@@ -3,7 +3,6 @@ import { Navigate, useLocation, useSearchParams } from 'react-router-dom'
 import api from '../api'
 import useGenres from '../hooks/useGenres'
 import { InfiniteMovies } from '../components/Infinite/Infinite'
-import { HideSeenSwitch } from '../components/Seen/Seen'
 
 const thisYear = new Date().getFullYear()
 const years = Array.from({ length: thisYear + 2 - 1920 }, (_, i) => thisYear + 1 - i)
@@ -109,10 +108,6 @@ const Browse = () => {
             ))}
           </div>
         </fieldset>
-
-        <div className="Toolbar-end">
-          <HideSeenSwitch />
-        </div>
       </form>
 
       {sort === 'trending' && period && (

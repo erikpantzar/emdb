@@ -4,7 +4,6 @@ import api from '../api'
 import useAsync from '../hooks/useAsync'
 import { useVisit } from '../components/Trail/useTrail'
 import { MovieGrid } from '../components/Card/MovieCard'
-import { HideSeenSwitch } from '../components/Seen/Seen'
 import { byNewest, byRating, image } from '../lib/format'
 import './Person.css'
 
@@ -157,9 +156,6 @@ const Person = () => {
               {label}
             </button>
           ))}
-        </div>
-        <div className="Toolbar-end">
-          <HideSeenSwitch />
         </div>
       </div>
 

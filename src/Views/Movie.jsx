@@ -5,7 +5,6 @@ import useAsync from '../hooks/useAsync'
 import { useVisit } from '../components/Trail/useTrail'
 import { MovieRow, Row } from '../components/Row/Row'
 import { PersonCard } from '../components/PersonCard/PersonCard'
-import { SeenToggle } from '../components/Seen/Seen'
 import { PlayIcon } from '../components/Icons/Icons'
 import Trailers from '../components/Trailers/Trailers'
 import { image, ratingOf, runtimeOf, yearOf } from '../lib/format'
@@ -160,7 +159,6 @@ const Movie = () => {
       <Hero movie={movie} />
 
       <div className="Movie-actions">
-        <SeenToggle movie={movie} className="Button" withLabel />
         <button
           type="button"
           className="Button"

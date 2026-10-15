@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import api from '../api'
 import useAsync from '../hooks/useAsync'
 import { MovieRow } from '../components/Row/Row'
-import { HideSeenSwitch } from '../components/Seen/Seen'
 import { Rating } from '../components/Card/MovieCard'
 import { image, yearOf } from '../lib/format'
 import './Home.css'
@@ -70,10 +69,7 @@ const Home = () => {
       )}
 
       <div className="Home-bar">
-        <p className="Home-lede">
-          Rows to wander through. Mark what you have seen, then hide it.
-        </p>
-        <HideSeenSwitch />
+        <p className="Home-lede">Rows to wander through.</p>
       </div>
 
       <FetchRow

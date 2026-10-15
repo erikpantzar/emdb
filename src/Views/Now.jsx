@@ -2,7 +2,6 @@ import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import api from '../api'
 import { InfiniteMovies } from '../components/Infinite/Infinite'
-import { HideSeenSwitch } from '../components/Seen/Seen'
 
 const tabs = {
   playing: { label: 'In cinemas', fetchPage: api.nowPlaying },
@@ -34,9 +33,6 @@ const Now = () => {
             </Link>
           ))}
         </nav>
-        <div className="Toolbar-end">
-          <HideSeenSwitch />
-        </div>
       </div>
 
       <InfiniteMovies key={tab} fetchPage={tabs[tab].fetchPage} />

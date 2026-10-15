@@ -42,7 +42,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 600ms var(--ease-out), filter var(--dur);
+  transition: transform 600ms var(--ease-out);
 }
 
 .Card-fallback {
@@ -68,10 +68,6 @@
 .Card-link:hover .Card-poster img,
 .Card-link:focus-visible .Card-poster img {
   transform: scale(1.045);
-}
-
-.Card.is-seen .Card-poster img {
-  filter: grayscale(0.7) brightness(0.55);
 }
 
 .Card-rating {
@@ -135,53 +131,4 @@
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--text-muted);
-}
-
-.Card-seen {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-  display: grid;
-  place-items: center;
-  width: 2.5rem;
-  height: 2.5rem;
-  padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 50%;
-  background: rgba(12, 11, 9, 0.72);
-  color: #fff;
-  backdrop-filter: blur(6px);
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity var(--dur-fast), transform var(--dur) var(--ease-out),
-    background var(--dur-fast);
-}
-
-.Card-seen svg {
-  width: 1.2rem;
-  height: 1.2rem;
-}
-
-.Card:hover .Card-seen,
-.Card:focus-within .Card-seen,
-.Card-seen[aria-pressed='true'] {
-  opacity: 1;
-  transform: none;
-}
-
-.Card-seen[aria-pressed='true'] {
-  background: #ffb547;
-  border-color: #ffb547;
-  color: #1a1206;
-}
-
-.Card-seen:hover {
-  transform: scale(1.08);
-}
-
-@media (hover: none) {
-  .Card-seen {
-    opacity: 1;
-    transform: none;
-  }
 }

@@ -1,6 +1,5 @@
 import React, { useId, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { useVisibleMovies } from '../../hooks/useSeen'
 import { MovieCard } from '../Card/MovieCard'
 import { ChevronIcon } from '../Icons/Icons'
 import './Row.css'
@@ -63,17 +62,13 @@ const Row = ({ title, eyebrow, seeAll, children }) => {
   )
 }
 
-const MovieRow = ({ movies = [], status, ...props }) => {
-  const visible = useVisibleMovies(movies)
-
-  return (
-    <Row {...props}>
-      {status && <li className="Row-status">{status}</li>}
-      {visible.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
-    </Row>
-  )
-}
+const MovieRow = ({ movies = [], status, ...props }) => (
+  <Row {...props}>
+    {status && <li className="Row-status">{status}</li>}
+    {movies.map((movie) => (
+      <MovieCard key={movie.id} movie={movie} />
+    ))}
+  </Row>
+)
 
 export { Row, MovieRow }
