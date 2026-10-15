@@ -15,6 +15,10 @@ Browse movies, people and themes from [The Movie Database](https://www.themovied
 
 The `.env` file is gitignored, never commit the key.
 
+## PR screenshots
+
+`npm run pr-shots -- --route / --route /movie/550 --pr <N>` shoots each route on the PR's base branch and on your checkout, then posts them side by side on the PR. Leave out `--pr` to only save them in `.pr-shots/`. First run needs `npx playwright install chromium`.
+
 ## Deploy
 
 Every push to `master` builds and deploys to GitHub Pages with the workflow in `.github/workflows/deploy.yml`. The TMDB key comes from the `VITE_TMDB_KEY` repo secret.
