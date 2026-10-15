@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useGenreNames } from '../../hooks/useGenres'
 import { image, ratingOf, yearOf } from '../../lib/format'
+import { WatchlistToggle } from '../Watchlist/WatchlistToggle'
 import './Card.css'
 
 const Rating = ({ movie }) => {
@@ -59,6 +60,7 @@ const MovieCard = ({ movie, note }) => {
           </span>
         )}
       </Link>
+      <WatchlistToggle movie={movie} className="Card-save" />
     </li>
   )
 }

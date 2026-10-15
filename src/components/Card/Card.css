@@ -132,3 +132,51 @@
   font-weight: 600;
   color: var(--text-muted);
 }
+
+.Card-save {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  background: rgba(12, 11, 9, 0.75);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity var(--dur-fast), transform var(--dur) var(--ease-out),
+    background var(--dur-fast), color var(--dur-fast);
+}
+
+.Card-save svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.Card:hover .Card-save,
+.Card:focus-within .Card-save,
+.Card-save[aria-pressed='true'] {
+  opacity: 1;
+  transform: none;
+}
+
+.Card-save:hover {
+  background: rgba(38, 34, 28, 0.95);
+}
+
+.Card-save[aria-pressed='true'] {
+  border-color: #ffb547;
+  color: #ffb547;
+}
+
+@media (hover: none) {
+  .Card-save {
+    opacity: 1;
+    transform: none;
+  }
+}
