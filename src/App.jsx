@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ScrollToTop from './ScrollToTop'
 import Header from './components/Header/Header'
 import Trail from './components/Trail/Trail'
+import Curtain from './components/Curtain/Curtain'
 
 import Home from './Views/Home'
 import Browse, { ToBrowse } from './Views/Browse'
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <Curtain />
     </BrowserRouter>
   )
 }
