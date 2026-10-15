@@ -16,6 +16,12 @@ const Svg = ({ children, ...props }) => (
   </svg>
 )
 
+const BookmarkIcon = ({ filled = false }) => (
+  <Svg fill={filled ? 'currentColor' : 'none'}>
+    <path d="M6 3h12v18l-6-4-6 4Z" />
+  </Svg>
+)
+
 const ChevronIcon = ({ direction = 'right' }) => (
   <Svg>
     <path d={direction === 'left' ? 'm15 5-7 7 7 7' : 'm9 5 7 7-7 7'} />
@@ -47,4 +53,4 @@ const PlayIcon = () => (
   </Svg>
 )
 
-export { ChevronIcon, MenuIcon, CloseIcon, SearchIcon, PlayIcon }
+export { BookmarkIcon, ChevronIcon, MenuIcon, CloseIcon, SearchIcon, PlayIcon }

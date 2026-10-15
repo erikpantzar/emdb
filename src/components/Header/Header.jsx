@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom'
 import { CloseIcon, MenuIcon, SearchIcon } from '../Icons/Icons'
 import api from '../../api'
+import { useWatchlist } from '../../hooks/useWatchlist'
 import { image, yearOf } from '../../lib/format'
 import './Header.css'
 
@@ -11,6 +12,7 @@ const links = [
   ['/creators', 'Creators'],
   ['/actors', 'Actors'],
   ['/themes', 'Themes'],
+  ['/watchlist', 'Watchlist'],
 ]
 
 const linkOf = (item) =>
@@ -155,6 +157,7 @@ const HeaderSearch = ({ initial }) => {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const { items } = useWatchlist()
   const location = useLocation()
   const query =
     location.pathname === '/search'
@@ -188,7 +191,7 @@ const Header = () => {
             {links.map(([to, label]) => (
               <li key={to}>
                 <NavLink to={to} end={to === '/'} className="Header-link">
-                  {label}
+                  {to === '/watchlist' ? `${label} (${items.length})` : label}
                 </NavLink>
               </li>
             ))}

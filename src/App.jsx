@@ -16,6 +16,7 @@ import Themes from './Views/Themes'
 import Theme from './Views/Theme'
 import Search from './Views/Search'
 import About from './Views/About'
+import Watchlist from './Views/Watchlist'
 
 const NotFound = () => (
   <section className="Page">
@@ -44,6 +45,7 @@ export default function App() {
           <Route path="/discover" element={<ToBrowse />} />
           <Route path="/search" element={<Search />} />
           <Route path="/about" element={<About />} />
+          <Route path="/watchlist" element={<Watchlist />} />
           <Route path="/movie/:id" element={<Movie />} />
           <Route path="/person/:personId" element={<Person />} />
           <Route
