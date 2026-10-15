@@ -50,8 +50,8 @@ gh api repos/erikpantzar/emdb/issues/comments/<comment-id> \
 curl -sI <raw-url> | grep -iE '^(HTTP|content-type)'
 ```
 
-A camo (`camo.githubusercontent.com`) src is normal for a public repo; the
-raw URL itself must return `200` and `image/png`.
+Good: the `<img>` src stays the raw.githubusercontent.com URL (verified on
+PR #40) and the raw URL returns `200` and `image/png`.
 
 ## Dead ends (from teneo-x, don't retry)
 
