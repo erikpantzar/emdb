@@ -7,7 +7,7 @@
   gap: var(--space-m);
   min-height: var(--header-h);
   padding: 0 var(--gutter);
-  background: var(--header-bg);
+  background: #c0392b;
   backdrop-filter: blur(14px) saturate(1.3);
   border-bottom: 1px solid var(--line);
 }
