@@ -146,6 +146,7 @@ async function shoot(routes) {
         await page.goto(`http://localhost:${port}/emdb/${path}`, {
           waitUntil: 'networkidle',
         })
+        await page.waitForSelector('.Curtain', { state: 'detached' })
         await page.screenshot({
           path: file,
           fullPage: true,

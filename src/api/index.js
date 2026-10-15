@@ -1,19 +1,31 @@
 const KEY = import.meta.env.VITE_TMDB_KEY
 const baseURL = 'https://api.themoviedb.org/3'
 
+let started = 0
+let settleFirst
+const firstResponse = new Promise((resolve) => {
+  settleFirst = resolve
+})
+const requestsStarted = () => started
+
 const get = async (path, params = {}) => {
-  const query = new URLSearchParams({
-    api_key: KEY,
-    language: 'en-US',
-    ...params,
-  })
-  const res = await fetch(`${baseURL}${path}?${query}`)
+  started += 1
+  try {
+    const query = new URLSearchParams({
+      api_key: KEY,
+      language: 'en-US',
+      ...params,
+    })
+    const res = await fetch(`${baseURL}${path}?${query}`)
 
-  if (!res.ok) {
-    throw new Error(`TMDB ${res.status} on ${path}`)
+    if (!res.ok) {
+      throw new Error(`TMDB ${res.status} on ${path}`)
+    }
+
+    return res.json()
+  } finally {
+    settleFirst()
   }
-
-  return res.json()
 }
 
 const fetchMovie = (query) => get('/search/movie', { query })
@@ -155,7 +167,7 @@ const fetchTopOfDecade = (decade, page) =>
     page,
   })
 
-export { get }
+export { get, firstResponse, requestsStarted }
 
 export default {
   movie: fetchMovie,
