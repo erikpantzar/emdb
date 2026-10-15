@@ -38,7 +38,7 @@ clicks, dialogs or hover states, extend the script with a per-route step.
 Images go to the orphan `pr-assets` branch under `pr-<N>/`, through the
 Contents API, never into the PR branch. The script creates the branch with an
 empty-tree commit if it is missing. The repo is public, so embeds use
-`https://raw.githubusercontent.com/erikpantzar/emdb/<commit-sha>/pr-<N>/<file>.png`,
+`https://raw.githubusercontent.com/erikpantzar/emdb/<commit-sha>/pr-<N>/<file>.jpg`,
 pinned to the upload commit. Re-running for the same PR overwrites the files
 and posts a new comment.
 
@@ -51,11 +51,11 @@ curl -sI <raw-url> | grep -iE '^(HTTP|content-type)'
 ```
 
 Good: the `<img>` src stays the raw.githubusercontent.com URL (verified on
-PR #40) and the raw URL returns `200` and `image/png`.
+PR #40) and the raw URL returns `200` and `image/jpeg`.
 
 ## Dead ends (from teneo-x, don't retry)
 
 - Release assets: need API auth headers to download, don't render inline.
 - Gists: `gh gist create` rejects binary files.
-- Committing PNGs to the PR branch: renders, but merges the screenshots into
+- Committing images to the PR branch: renders, but merges the screenshots into
   `master` forever. Use `pr-assets`.

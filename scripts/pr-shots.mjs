@@ -142,11 +142,16 @@ async function shoot(routes) {
         ['before', BASE_PORT],
         ['after', CURRENT_PORT],
       ]) {
-        const file = join(outDir, `${slug}-${side}.png`)
+        const file = join(outDir, `${slug}-${side}.jpg`)
         await page.goto(`http://localhost:${port}/emdb/${path}`, {
           waitUntil: 'networkidle',
         })
-        await page.screenshot({ path: file, fullPage: true })
+        await page.screenshot({
+          path: file,
+          fullPage: true,
+          type: 'jpeg',
+          quality: 70,
+        })
         shot[side] = file
         console.log(file)
       }
@@ -223,8 +228,8 @@ function postComment(pr, base, shots) {
   ])
   ensureAssetsBranch(repo)
   const rows = shots.map(({ route, slug, before, after }) => {
-    const beforeUrl = upload(repo, pr, before, `${slug}-before.png`)
-    const afterUrl = upload(repo, pr, after, `${slug}-after.png`)
+    const beforeUrl = upload(repo, pr, before, `${slug}-before.jpg`)
+    const afterUrl = upload(repo, pr, after, `${slug}-after.jpg`)
     return `| \`${route}\` | ![${slug} before](${beforeUrl}) | ![${slug} after](${afterUrl}) |`
   })
   const body = [
